@@ -1,0 +1,315 @@
+\documentclass[12pt]{extarticle}
+%Some packages I commonly use.
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+\usepackage{xeCJK}
+\usepackage{physics}
+
+% \graphicspath{ {./images/} }
+
+
+%A bunch of definitions that make my life easier
+\newcommand{\matlab}{{\sc Matlab} }
+\newcommand{\cvec}[1]{{\mathbf #1}}
+\newcommand{\rvec}[1]{\vec{\mathbf #1}}
+\newcommand{\ihat}{\hat{\textbf{\i}}}
+\newcommand{\jhat}{\hat{\textbf{\j}}}
+\newcommand{\khat}{\hat{\textbf{k}}}
+\newcommand{\minor}{{\rm minor}}
+% \newcommand{\trace}{{\rm trace}}
+\newcommand{\spn}{{\rm Span}}
+\newcommand{\rem}{{\rm rem}}
+\newcommand{\ran}{{\rm range}}
+\newcommand{\range}{{\rm range}}
+\newcommand{\mdiv}{{\rm div}}
+\newcommand{\proj}{{\rm proj}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\attn}[1]{\textbf{#1}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{note}{Note}
+\newtheorem{exercise}{Exercise}
+\newcommand{\bproof}{\bigskip {\bf Proof. }}
+\newcommand{\eproof}{\hfill\qedsymbol}
+\newcommand{\Disp}{\displaystyle}
+\newcommand{\qe}{\hfill\(\bigtriangledown\)}
+
+\newcommand{\SubItem}[1]{
+    {\setlength\itemindent{15pt} \item[-] #1}
+}
+
+
+\setlength{\columnseprule}{1 pt}
+
+
+\title{Nonlinear Fiber Optics\cite{agrawal_nonlinear_2007} Summary}
+\author{Maodong Gao}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+    \subsection{Historical prospective}
+    
+        \begin{itemize}
+            \item 1960, fibres lossy $\geq$ 1000dB/km. 1970 20dB/km.
+            \item 1979, loss level 0.2dB/km in 1.55um. Limited by Rayleigh Scattering.
+            \item 1972, Raman and Brillouin scattering process are studied using optical fibers.
+            \item Stimulated other nonlinear phenomena,including optically induced birefringence, parametric 4-wave mixing, self-phase modulation
+            \item 1973, soliton like pulses are suggested. 1980 observed. 6fs pulse observed in 1987.
+            \item 1990s, Erbium-doped fiber amplifier, wavelength near 1550nm.
+            \item 2000s, stimulated Raman scattering(so called Raman amplification), four-wave mixing(so called Fiber-optic parametric amplifiers) are two new types of amplifiers. Do not require doped atoms and spectral region not limited.
+            \item Amplifiers fueled optical solitons. New types of solitons such as dispersion-managed solitons and dissipative solitons.
+            \item (Chapter 11) 1978, fibre gratings. 1996, New types of fibers, such as photonic crystal fibres, crystal fibers,  holey fibers and micro-structure fibers.
+            \item (Chapter 12) New types of fibers has new dispersive (GVD, group velocity dispersion) and nonlinear (relativity small core size enhance nonlinear effects) properties.
+            \item (Chapter 13) Supercontinuum generation. optical spectrum of incident light broadens by a factor of $\geq$100 over a short length of fiber.
+        \end{itemize}
+    
+    \subsection{Fiber Characteristics}
+        \begin{itemize}
+            \item step-index fibers, see Fig \ref{fig1.1}.
+            \item Two parameters characterize optical fiber: relative core-cladding index difference; V parameter.
+            \item core-cladding index difference:
+                \begin{equation}
+                    \Delta = \frac{n_1 - n_c}{n_1}
+                    \label{core-cladding index difference}
+                \end{equation}
+            \item V parameter: this parameter determines number of modes supported by this fiber at a certain wavelength $\lambda$. Fiber supports single mode of a certain $\lambda$ if $V < 2.405$.
+                \begin{equation}
+                    V = k_0 a \sqrt{n_1^2 - n_c^2}
+                    \label{V parameter}
+                \end{equation}
+            where a is core radius, $k_0 = \frac{2\pi}{\lambda}$
+        \end{itemize}
+    
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=0.4\textwidth]{images/fig1.1.PNG}
+            \caption{Schematic illustration of the cross section and the refractive-index proﬁle of a stepindex ﬁber.}
+            \label{fig1.1}
+        \end{figure}
+        
+        \subsubsection{Material and Fabrication}
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=0.6\textwidth]{images/fig1.2.PNG}
+                \caption{Schematic diagram of the MCVD process commonly used for fiber fabrication.}
+                \label{fig1.2}
+            \end{figure}
+            
+            \begin{itemize}
+                \item Dopants increase refractive index: $GeO_2, P_2O_5$.
+                \item Dopants decrease refractive index: $boron, fluorine$
+                \item Dopants to core for amplification: $ErCl_3, Nd_2O_3$
+                \item MCVD(modified chemical vapor deposition) fiber fabrication process.
+            \end{itemize}
+            
+        \subsubsection{Fiber Losses}
+            Losses are characterized by attenuation constant $\alpha$:
+                \begin{equation}
+                    P_T = P_0 \exp{(-\alpha L)}.
+                    \label{attenuation constant}
+                \end{equation}
+            Another unit for $\alpha$ is dB/km, which are related by:
+                \begin{equation}
+                    \alpha_{dB} = -\frac{10}{L}\log{(\frac{P_T}{P_0})} = 4.343\alpha
+                \end{equation}
+            A high loss up to 10dB/km corresponds to attenutation constant of \\
+            $\alpha \approx 2 km^{-1} = 2\times 10^{-5}cm^{-1} $,
+            which is already very low compared to most other materials.
+            
+            
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=0.6\textwidth]{images/fig1.3.PNG}
+                \caption{Measured loss spectrum of a single-mode silica ﬁber. Dashed curve shows the contribution resulting from Rayleigh scattering.}
+                \label{fig1.3}
+            \end{figure}
+            
+            Two main fiber loss channels: Rayleigh scattering; Material absorption.
+            \begin{itemize}
+                \item Raleigh scattering, arises from density fluctuation frozen into fused silica.Local fluctuations in refractive index, scatter lights into all directions.
+                    \begin{equation}
+                        \alpha_R = \frac{C_R}{\lambda^4}
+                    \end{equation}
+                    Raleigh scattering strength decreases rapidly as wavelength increases. $C_R$ depends on constituents of fiber core, typically around $0.7-0.9 dB/(km \mu m^4)$. As $\alpha_R$ around $0.12-0.15 dB/km$ near $\lambda = 1.55 \mu m$.
+                \item Material absorption: Silica glass electronic resonance (ultraviolet region), vibrational resonance (far-infrared region beyond $2 \mu m$). Absorbs little light from $0.5 \mu m$ to $2 \mu m$.
+                \item Impurity absorption: most important impurity is OH ion. Its fundamental vibrational absorption peak is at $\approx 2.73 \mu m$. The peak in Fig.\ref{fig1.3} is the second overtone of OH ions.
+            \end{itemize}
+            
+        \subsubsection{Chromatic Dispersion}
+            \begin{itemize}
+                \item Chromatic dispersion basically is reflective index over optical frequency $n(\omega)$.
+                \item $n(\omega)$ relation with material resonance is well approximated by Sellmeier equation:
+                    \begin{equation}
+                        n^2(\omega) = 1 + \sum_{j=1}^m \frac{B_j \omega_j^2}{\omega_j^2-\omega^2},
+                        \label{sellmeier equation}
+                    \end{equation}
+                    where $\omega_j$ are material resonances frequencies, $B_j$ is the strength of $j$th resonance. $\omega_j$ contributes more as it is nearer to frequcney of interest $\omega$.
+                \item For bulk-fused silica, the fitting of Sellmeier equation to $m = 3$ has the parameters in Table\ref{bulk-fused silica Sellmeier equation fitting}. This is useful when doing COMSOL simulation. The $n(\omega)$ results are shown in Fig.\ref{fig1.4}.
+                    \begin{table}[htbp]
+                    \centering
+                        \begin{tabular}{|c|c|c|c|}
+                        \hline
+                        $j$ in Eq.\ref{sellmeier equation} & 1       & 2           & 3           \\ \hline
+                        $B_j$                          & 0.6961663   & 0.4079426   & 0.8974794   \\ \hline
+                        $\lambda_j / nm$               & 68.4043     & 116.2414    & 9896.161    \\ \hline
+                        $\omega_j =2\pi c/\lambda_j$   & 2.7537E+16  & 1.62047E+16 & 1.90342E+14 \\ \hline
+                        Freq /THz                      & 43.82655155 & 25.79050648 & 0.302938137 \\ \hline
+                        \end{tabular}
+                    \caption{bulk-fused silica Sellmeier equation(Eq.\ref{sellmeier equation}) fitting}
+                    \label{bulk-fused silica Sellmeier equation fitting}
+                    \end{table}
+                \item Dispersion induce short optical pulse broadening.
+                \item Dispersion and non-linearity are different behavior components. In nonlinear regime, these two may behave qualitatively different.
+                
+                \item Group index $n_g$: Define $n_g = \frac{v_g}{c}$. From mode-propagation constant $\beta$ view, Taylor expands $\beta(\omega)$ about the center pulse freq $\omega_0$, 
+                    \begin{equation}
+                        \beta(\omega) = n(\omega)\frac{\omega}{c}=\beta_0 + \beta_1(\omega-\omega_0)+\frac{1}{2}\beta_2(\omega-\omega_0)^2,
+                        \label{propagation constant expansion}
+                    \end{equation}
+                    where
+                    \begin{equation}
+                        \beta_m = (\dv[m]{\beta}{\omega})_{\omega=\omega_0}.
+                    \end{equation}
+                    And $n_g$ are related to $\beta_1$ by:
+                    \begin{equation}
+                        \beta_1 = \frac{1}{v_g} = \frac{n_g}{c} = \frac{1}{c}(n+\omega \dv{n}{\omega}).
+                        \label{group velocity and group index}
+                    \end{equation}
+                
+                \item Group velocity dispersion (GVD): characterized by $\dv{n_g}{\omega}$, and this is related to $\beta_2$ by:
+                    \begin{equation}
+                        \beta_2 = \dv{\beta_1}{\omega} = \frac{1}{c}\dv{n_g}{\omega} = \frac{1}{c}(2\dv{n}{\omega} +\dv[2]{n}{\omega}).
+                        \label{beta2 defination}
+                    \end{equation}
+                    
+                \item GVD parameter D: Defined by $\dv{\beta_1}{\lambda}$. Related to $\beta_2$ by:
+                    \begin{equation}
+                        D = \dv{\beta_1}{\lambda} = -\frac{2\pi c}{\lambda^2}\beta_2 = -\frac{\lambda}{c}\dv[2]{n}{\lambda}
+                        \label{D2 defination}
+                    \end{equation}
+                     The results of Eq.\ref{beta2 defination} and Eq.\ref{D2 defination} are illustrated in Fig.\ref{fig1.5}, based on the calculation of Eq.\ref{sellmeier equation}.
+                     
+                \item Normal and Anomalous dispersion: divided by the sign of D.
+                    \begin{table}[htbp]
+                    \centering
+                    \begin{tabular}{|c|c|c|c|}
+                        \hline
+                        Normal dispersion    & $\beta_2$\textgreater{}0 & $D_2$\textless{}0    & red fast  \\ \hline
+                        Anomalous dispersion & $\beta_2$\textless{}0    & $D_2$\textgreater{}0 & blue fast \\ \hline
+                    \end{tabular}
+                    \end{table}
+                    Anomalous dispersion regime is the regime optical fibers support solitons. Solitons are self-formed by a process of balancing dispersive and nonlinear effects.
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/fig1.4.PNG}
+                        \caption{Variation of refractive index n and group index $n_g$ with wavelength for fused silica. $n(\omega)$ is calculated from Eq.\ref{sellmeier equation}, $n_g(\omega)$ is calculaed from Eq.\ref{group velocity and group index}.}
+                        \label{fig1.4}
+                    \end{figure}
+                    
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/fig1.5.PNG}
+                        \caption{Variation of β2, D, and d12 with wavelength for fused silica. Both $\beta_2$ and D vanish at the zero-dispersion wavelength occurring near 1.27 $\mu m$. The $d_{12}$ here stands for $d_{12}(\lambda, 0.8\mu m)$ in Eq.\ref{d12 definition}.}
+                        \label{fig1.5}
+                    \end{figure}
+                    
+                \item Zero dispersion wavelength $\lambda_D$, where $\beta_2$ and D are 0. Around this regime $\beta_3$ (Third Order Dispersion, TOD) in Eq.\ref{propagation constant expansion} becomes important. 
+                
+                \item $\lambda_D$ Difference between bulked fused silica($1.27\mu m$) and actual glass fibers(typically $1.31\mu m$):
+                    \SubItem{1.} Fiber core have dopants such as $GeO_2$ or $P_2O_5$.
+                    \SubItem{2.} Fiber modes are confined in two directions, which discrete k number in these two directions. This geometry effect will influence dispersion.
+                    \SubItem{3.} Other fiber design parameters such as core radius a and core-cladding index difference $\Delta$. Dispersion shift fibers can move $\lambda_D$ to $1.55\mu m$, where fiber loss at minium.
+                    \SubItem{4.} dispersion-flattened optical fibers by multi-clad layer.
+                    
+                \item walk-off parameter $d_{12}$: nonlinear interaction between two optical pulses ceases
+                to occur when the faster moving pulse completely walks through the slower moving pulse.
+                    \begin{equation}
+                        d_{12}(\lambda_1,\lambda_2) = \beta_1(\lambda_1)-\beta(\lambda_2) = v_g^{-1}(\lambda_1)-v_g^{-1}(\lambda_2)
+                        \label{d12 definition}
+                    \end{equation}
+                    For pulses of width $T_0$, walk-off length $L_W$ defined by:
+                    \begin{equation}
+                        L_W = \frac{T_0}{\abs{d_{12}}}
+                        \label{LW definition}
+                    \end{equation}
+            \end{itemize}
+        
+        
+        \subsubsection{Polarization-Mode Dispersion}
+            
+            
+
+
+
+% \subsubsection{effective red and blue detune}
+
+
+% \section{Coupling mode equation}
+
+
+% \section{Soliton generation}
+% \subsection{modulation instability}
+
+
+% \subsection{Turing pattern}
+% \subsection{Bright cavity soliton}
+% \subsection{Bright soliton molecules}
+% \subsection{Breathing solitons}
+
+
+% \section{Induction Proofs}
+% \subsection{Ordinary Induction}
+% \begin{exercise} Prove, for all natural numbers $n$, that 
+% \begin{equation} \sum_{k=0}^n k = 1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}
+% \label{eq:Pn}\end{equation}
+% \end{exercise}
+
+% \begin{proof}
+% We prove this by induction on $n\in\N$.  In the base case, $n=0$, and \eqref{eq:Pn} becomes
+% $$\sum_{k=0}^n k = \sum_{k=0}^0 k = 0 = \dfrac{0(1)}{2} = \dfrac{n(n+1)}{2}$$
+
+% Now, let $n>0$ be arbitrary, and assume \eqref{eq:Pn}.
+% We show $\displaystyle \sum_{k=0}^{n+1} k = \dfrac{(n+1)(n+2)}{2}$.
+% To that end note 
+% \begin{align*}
+% 	\sum_{k=0}^{n+1} k &= \left(\sum_{k=0}^{n} k\right) + (n+1) &\mbox{(sum definition)}\\
+% 	&= \frac{n(n+1)}{2} + (n+1) &\mbox{(induction hypothesis)}
+% 	\\
+% 	&= \frac{n(n+1)}{2} + \frac{2n+2}{2} &\mbox{(common denominator)}
+% 	\\
+% 	&= \frac{n^2 +n}{2} + \frac{2n+2}{2} &\mbox{(distribute)}
+% 	\\
+% 	&= \frac{n^2 +3n + 2}{2} &\mbox{(combine like terms)}
+% 	\\
+% 	&= \frac{(n+1)(n+2)}{2} & \mbox{(factor the numerator)}\\
+% \end{align*}
+
+% In all cases, \eqref{eq:Pn} is true, so $\forall n\in \N$, 
+% $\Disp \sum_{k=0}^n k = \dfrac{n(n+1)}{2}$
+% \end{proof}
+\bibliographystyle{IEEEtran}
+\bibliography{references.bib}
+\end{document}
