@@ -13,8 +13,14 @@
 \usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
 \usepackage{xeCJK}
 \usepackage{physics}
+\usepackage{hyperref}
+% \usepackage{tabularx,booktabs}
+
 
 % \graphicspath{ {./images/} }
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 
 
 %A bunch of definitions that make my life easier
@@ -88,7 +94,7 @@
     
     \subsection{Fiber Characteristics}
         \begin{itemize}
-            \item step-index fibers, see Fig \ref{fig1.1}.
+            \item step-index fibers, see \autoref{fig1.1}.
             \item Two parameters characterize optical fiber: relative core-cladding index difference; V parameter.
             \item core-cladding index difference:
                 \begin{equation}
@@ -155,7 +161,7 @@
                     \end{equation}
                     Raleigh scattering strength decreases rapidly as wavelength increases. $C_R$ depends on constituents of fiber core, typically around $0.7-0.9 dB/(km \mu m^4)$. As $\alpha_R$ around $0.12-0.15 dB/km$ near $\lambda = 1.55 \mu m$.
                 \item Material absorption: Silica glass electronic resonance (ultraviolet region), vibrational resonance (far-infrared region beyond $2 \mu m$). Absorbs little light from $0.5 \mu m$ to $2 \mu m$.
-                \item Impurity absorption: most important impurity is OH ion. Its fundamental vibrational absorption peak is at $\approx 2.73 \mu m$. The peak in Fig.\ref{fig1.3} is the second overtone of OH ions.
+                \item Impurity absorption: most important impurity is OH ion. Its fundamental vibrational absorption peak is at $\approx 2.73 \mu m$. The peak in \autoref{fig1.3} is the second overtone of OH ions.
             \end{itemize}
             
         \subsubsection{Chromatic Dispersion}
@@ -167,18 +173,20 @@
                         \label{sellmeier equation}
                     \end{equation}
                     where $\omega_j$ are material resonances frequencies, $B_j$ is the strength of $j$th resonance. $\omega_j$ contributes more as it is nearer to frequcney of interest $\omega$.
-                \item For bulk-fused silica, the fitting of Sellmeier equation to $m = 3$ has the parameters in Table\ref{bulk-fused silica Sellmeier equation fitting}. This is useful when doing COMSOL simulation. The $n(\omega)$ results are shown in Fig.\ref{fig1.4}.
+                \item For bulk-fused silica, the fitting of Sellmeier equation to $m = 3$ has the parameters in \autoref{bulk-fused silica Sellmeier equation fitting}. This is useful when doing COMSOL simulation. The $n(\omega)$ results are shown in \autoref{fig1.4}.
                     \begin{table}[htbp]
                     \centering
                         \begin{tabular}{|c|c|c|c|}
                         \hline
-                        $j$ in Eq.\ref{sellmeier equation} & 1       & 2           & 3           \\ \hline
+                        \multicolumn{4}{|c|}{Fitting coefficients in \autoref{sellmeier equation} for bulk-fused silica up to order m=3} \\
+                        \hline
+                        $j$ in \autoref{sellmeier equation} & 1       & 2           & 3           \\ \hline
                         $B_j$                          & 0.6961663   & 0.4079426   & 0.8974794   \\ \hline
                         $\lambda_j / nm$               & 68.4043     & 116.2414    & 9896.161    \\ \hline
                         $\omega_j =2\pi c/\lambda_j$   & 2.7537E+16  & 1.62047E+16 & 1.90342E+14 \\ \hline
                         Freq /THz                      & 43.82655155 & 25.79050648 & 0.302938137 \\ \hline
                         \end{tabular}
-                    \caption{bulk-fused silica Sellmeier equation(Eq.\ref{sellmeier equation}) fitting}
+                    \caption{bulk-fused silica Sellmeier \autoref{sellmeier equation} fitting}
                     \label{bulk-fused silica Sellmeier equation fitting}
                     \end{table}
                 \item Dispersion induce short optical pulse broadening.
@@ -192,6 +200,7 @@
                     where
                     \begin{equation}
                         \beta_m = (\dv[m]{\beta}{\omega})_{\omega=\omega_0}.
+                        \label{betam definition}
                     \end{equation}
                     And $n_g$ are related to $\beta_1$ by:
                     \begin{equation}
@@ -202,15 +211,15 @@
                 \item Group velocity dispersion (GVD): characterized by $\dv{n_g}{\omega}$, and this is related to $\beta_2$ by:
                     \begin{equation}
                         \beta_2 = \dv{\beta_1}{\omega} = \frac{1}{c}\dv{n_g}{\omega} = \frac{1}{c}(2\dv{n}{\omega} +\dv[2]{n}{\omega}).
-                        \label{beta2 defination}
+                        \label{beta2 definition}
                     \end{equation}
                     
                 \item GVD parameter D: Defined by $\dv{\beta_1}{\lambda}$. Related to $\beta_2$ by:
                     \begin{equation}
                         D = \dv{\beta_1}{\lambda} = -\frac{2\pi c}{\lambda^2}\beta_2 = -\frac{\lambda}{c}\dv[2]{n}{\lambda}
-                        \label{D2 defination}
+                        \label{D2 definition}
                     \end{equation}
-                     The results of Eq.\ref{beta2 defination} and Eq.\ref{D2 defination} are illustrated in Fig.\ref{fig1.5}, based on the calculation of Eq.\ref{sellmeier equation}.
+                     The results of \autoref{beta2 definition} and \autoref{D2 definition} are illustrated in \autoref{fig1.5}, based on the calculation of \autoref{sellmeier equation}.
                      
                 \item Normal and Anomalous dispersion: divided by the sign of D.
                     \begin{table}[htbp]
@@ -220,25 +229,28 @@
                         Normal dispersion    & $\beta_2$\textgreater{}0 & $D_2$\textless{}0    & red fast  \\ \hline
                         Anomalous dispersion & $\beta_2$\textless{}0    & $D_2$\textgreater{}0 & blue fast \\ \hline
                     \end{tabular}
+                    \caption{Summary of normal and anomalous dispersion.}
+                    \label{Summary of normal and anomalous dispersion}
                     \end{table}
+                    
                     Anomalous dispersion regime is the regime optical fibers support solitons. Solitons are self-formed by a process of balancing dispersive and nonlinear effects.
                     \begin{figure}[htbp]
                         \centering
                         \includegraphics[width=0.6\textwidth]{images/fig1.4.PNG}
-                        \caption{Variation of refractive index n and group index $n_g$ with wavelength for fused silica. $n(\omega)$ is calculated from Eq.\ref{sellmeier equation}, $n_g(\omega)$ is calculaed from Eq.\ref{group velocity and group index}.}
+                        \caption{Variation of refractive index n and group index $n_g$ with wavelength for fused silica. $n(\omega)$ is calculated from \autoref{sellmeier equation}, $n_g(\omega)$ is calculaed from \autoref{group velocity and group index}.}
                         \label{fig1.4}
                     \end{figure}
                     
                     \begin{figure}[htbp]
                         \centering
                         \includegraphics[width=0.6\textwidth]{images/fig1.5.PNG}
-                        \caption{Variation of β2, D, and d12 with wavelength for fused silica. Both $\beta_2$ and D vanish at the zero-dispersion wavelength occurring near 1.27 $\mu m$. The $d_{12}$ here stands for $d_{12}(\lambda, 0.8\mu m)$ in Eq.\ref{d12 definition}.}
+                        \caption{Variation of β2, D, and d12 with wavelength for fused silica. Both $\beta_2$ and D vanish at the zero-dispersion wavelength occurring near 1.27 $\mu m$. The $d_{12}$ here stands for $d_{12}(\lambda, 0.8\mu m)$ in \autoref{d12 definition}.}
                         \label{fig1.5}
                     \end{figure}
                     
-                \item Zero dispersion wavelength $\lambda_D$, where $\beta_2$ and D are 0. Around this regime $\beta_3$ (Third Order Dispersion, TOD) in Eq.\ref{propagation constant expansion} becomes important. 
+                \item Zero dispersion wavelength $\lambda_D$, where $\beta_2$ and D are 0. Around this regime $\beta_3$ (Third Order Dispersion, TOD) in \autoref{propagation constant expansion} becomes important. 
                 
-                \item $\lambda_D$ Difference between bulked fused silica($1.27\mu m$) and actual glass fibers(typically $1.31\mu m$):
+                \item WHY $\lambda_D$ is different between bulked fused silica($1.27\mu m$) and actual glass fibers(typically $1.31\mu m$):
                     \SubItem{1.} Fiber core have dopants such as $GeO_2$ or $P_2O_5$.
                     \SubItem{2.} Fiber modes are confined in two directions, which discrete k number in these two directions. This geometry effect will influence dispersion.
                     \SubItem{3.} Other fiber design parameters such as core radius a and core-cladding index difference $\Delta$. Dispersion shift fibers can move $\lambda_D$ to $1.55\mu m$, where fiber loss at minium.
@@ -259,8 +271,40 @@
         
         
         \subsubsection{Polarization-Mode Dispersion}
+            \begin{itemize}
+                \item Even single mode fiber supports two degeneracy modes: x-polarization and y-polarization modes.
+                \item cylindrical asymmetry and stress-induced anisotropy can break this degeneracy. This is called modal birefringence. 
+                    \begin{equation}
+                        B_m = \frac{\abs{\beta_x-\beta_y}}{k_0}=\abs{n_x-n_y}
+                        \label{polarization birefringence definition}
+                    \end{equation}
+                \item For a given value of Bm, the two modes exchange their powers in a periodic fashion as they propagate inside the fiber with the Beat Length period
+                    \begin{equation}
+                        L_B = \frac{2\pi}{\abs{\beta_x-\beta_y}}=\frac{\lambda}{B_m}.
+                        \label{Beat length definition}
+                    \end{equation}
+                    The intuition of Beat length can be illustrated by \autoref{beat lenght illustration}.
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/polar dispersion.jpg}
+                        \caption{Beat length illustration}
+                        \label{beat lenght illustration}
+                    \end{figure}
+                    
+                \item The pulse becomes broader at the output end because group velocities change $\bold{randomly}$ in response to random changes in fiber birefringence (analogous to a random-walk problem).
+                    \begin{equation}
+                        \Delta T = \abs{\frac{L}{v_{gx}-v_{gy}}}=L\abs{\beta_{1x}-\beta{1y}}
+                    \end{equation}
+                    The variance of $\Delta T$ is
+                    \begin{equation}
+                        \sigma_T \approx D_p \sqrt{L}.
+                    \end{equation}
+                    $D_p$ is PMD(Polarization-Mode Dispersion) parameter. L is travel distance.
+                    
+                \item polarization-maintaining fibers: induces LARGE amount of birefringence so that the FLUCTUATIONS do not significantly affect polarization.
+            \end{itemize}
             
-            
+    \subsection{Fiber Nonlinearities}
 
 
 
