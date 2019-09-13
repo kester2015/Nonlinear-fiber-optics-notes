@@ -11,7 +11,7 @@
 \usepackage{enumerate}
 \usepackage[utf8]{inputenc}
 \usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
-\usepackage{xeCJK}
+% \usepackage{xeCJK}
 \usepackage{physics}
 \usepackage{hyperref}
 % \usepackage{tabularx,booktabs}
@@ -283,12 +283,19 @@
                         L_B = \frac{2\pi}{\abs{\beta_x-\beta_y}}=\frac{\lambda}{B_m}.
                         \label{Beat length definition}
                     \end{equation}
-                    The intuition of Beat length can be illustrated by \autoref{beat lenght illustration}.
+                    The intuition of Beat length can be illustrated by \autoref{beat lenghth illustration}.
                     \begin{figure}[htbp]
                         \centering
-                        \includegraphics[width=0.6\textwidth]{images/polar dispersion.jpg}
+                        \includegraphics[width=0.6\textwidth]{images/polar_dispersion.jpg}
                         \caption{Beat length illustration}
-                        \label{beat lenght illustration}
+                        \label{beat lenghth illustration}
+                    \end{figure}
+                    
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/fig1.9.PNG}
+                        \caption{Evolution of state of polarization along a polarization-maintaining fiber when input signal is linearly polarized at 45 from the slow axis.}
+                        \label{fig1.9}
                     \end{figure}
                     
                 \item The pulse becomes broader at the output end because group velocities change $\bold{randomly}$ in response to random changes in fiber birefringence (analogous to a random-walk problem).
@@ -305,7 +312,31 @@
             \end{itemize}
             
     \subsection{Fiber Nonlinearities}
-
+        \begin{itemize}
+            \item On a fundamental level, the origin of nonlinear response is related to aharmonic motion of bound electrons under the influence of an applied field.
+            \item total polarization P induced by electric dipoles is not linear in the electric field E, but satisfies the more general relation:
+                \begin{equation}
+                    \frac{\boldsymbol{P}}{\epsilon_0} = \chi^{(1)} \cdot \boldsymbol{E} + \chi^{(2)} : \boldsymbol{EE} + \chi^{(3)} \vdots \boldsymbol{EEE} + \dots,
+                    \label{general PE relation}
+                \end{equation}
+                where $\chi^{(j)}$ is jth order susceptibility. 
+                
+                \SubItem{In general, $\chi^{(j)}$ is a (j,1)-tensor\cite{noauthor_tensor_2019} of rank j+1. The reason it is (j,1)-tensor is that this is a "mapping" coefficient taking in j-copies of 3-dim Cartesian space(i.e.$\boldsymbol{EE\dots}$) into a 1-cpoy of 3-dim Cartesian space(i.e. $\boldsymbol{P}$).}
+            \item second-order susceptibility: second-harmonic generation; sum-frequency generation. nonzero only for media that lack an inversion symmetry at the molecular level. 
+                \SubItem{Silica doesn't have this in-symmetry. Only electric-quadrupole and magnetic-dipole moments can generate weak second-order nonlinear effects.Defects or color centers inside the fiber core can also contribute to second-harmonic generation.}
+            \item third-order susceptibility: third-harmonic generation; four-wave mixing; nonlinear refraction.
+                \SubItem{Unless special efforts are made to achieve \textbf{phase matching}, the nonlinear processes that involve generation of new frequencies (e.g., third-harmonic generation and four-wave mixing) are not efficient in optical fibers.\label{Why nonlinear refraction most important} }
+        \end{itemize}
+        
+        \subsubsection{Nonlinear Refraction}
+            \begin{itemize}
+                \item As \ref{Why nonlinear refraction most important} said, refractive index in the simplest form is:
+                    \begin{equation}
+                        \Tilde{n}(\omega,I) = n(\omega) + n_2 I = n + \overline{n}_2\abs{\boldsymbol{E}^2}.
+                        \label{simplest nonlinear refractive index form}
+                    \end{equation}
+                    
+            \end{itemize}
 
 
 % \subsubsection{effective red and blue detune}
