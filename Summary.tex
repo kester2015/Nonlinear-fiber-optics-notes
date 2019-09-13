@@ -14,6 +14,8 @@
 % \usepackage{xeCJK}
 \usepackage{physics}
 \usepackage{hyperref}
+\usepackage{multicol}
+
 % \usepackage{tabularx,booktabs}
 
 
@@ -308,7 +310,7 @@
                     \end{equation}
                     $D_p$ is PMD(Polarization-Mode Dispersion) parameter. L is travel distance.
                     
-                \item polarization-maintaining fibers: induces LARGE amount of birefringence so that the FLUCTUATIONS do not significantly affect polarization.
+                \item polarization-maintaining fibers: induces LARGE amount of birefringence so that the FLUCTUATIONS do not significantly affect polarization.---> Which means polarization maintaining fibers can only maintain the polarization along fast or slow axis well.
             \end{itemize}
             
     \subsection{Fiber Nonlinearities}
@@ -320,8 +322,64 @@
                     \label{general PE relation}
                 \end{equation}
                 where $\chi^{(j)}$ is jth order susceptibility. 
-                
+                \SubItem{Take special notice of the relation between \autoref{sellmeier equation} and \autoref{general PE relation}. In \autoref{sellmeier equation}, no nonlinearity is considered, only dispersion is considered. Thus \autoref{sellmeier equation} is correlated with the first term in \autoref{general PE relation}. which means:
+                    \begin{equation}
+                        \frac{\boldsymbol{P}}{\epsilon_0} = \chi^{(1)}(\omega) \cdot \boldsymbol{E} \iff n(\omega).
+                    \end{equation}
+                    The high order terms in \autoref{general PE relation} are not related with \autoref{sellmeier equation} since they are nonlinear terms. \autoref{sellmeier equation} don't show the power dependence of refractive index.
+                }
                 \SubItem{In general, $\chi^{(j)}$ is a (j,1)-tensor\cite{noauthor_tensor_2019} of rank j+1. The reason it is (j,1)-tensor is that this is a "mapping" coefficient taking in j-copies of 3-dim Cartesian space(i.e.$\boldsymbol{EE\dots}$) into a 1-cpoy of 3-dim Cartesian space(i.e. $\boldsymbol{P}$).}
+                \SubItem{ Rank 4 tensor is a good example to illustrate the difference between convariant and contravariant indexes. Any tensor is a (p,q)-tensor with rank of p+q, where p is contravariant index, denoted as the uppper index; q is covariant index, denoted as lower index.
+                    \begin{itemize}
+                        \item For rank-4 tensors, typically have two types: type (3,1), such as 3rd order susceptibility $\chi^{(3)}$; and type (2,2), such as elasticity tensor\cite{noauthor_hookes_2019}.
+                        \item For rank 4 type (3,1): 3rd order susceptibility $\chi^{(3)}$, has 3 contravariant index(upper index) and 1 covariant index(lower index). The mathematical formation of $\chi^{(3)}$ is
+                            \begin{equation}
+                                \label{illustration of chi3 as (1,3)-tensor}
+                                \frac{\boldsymbol{P}^{(3)}}{\epsilon_0} = \chi^{(3)} \vdots \boldsymbol{EEE}.
+                            \end{equation}
+                        Expand $\boldsymbol{P}^{(3)}$ in x,y,z directions (Using Einstein summation notation, sum over same notations, which are $ ijk \in \{x,y,z\} $ here):
+                            \begin{equation}
+                                \begin{cases}
+                                P^{(3)}_x /\epsilon_0 = {\chi^{(3)}}_x^{ijk}E_i E_j E_k\\
+                                P^{(3)}_y / \epsilon_0 = {\chi^{(3)}}_y^{ijk}E_i E_j E_k\\
+                                P^{(3)}_z /\epsilon_0 = {\chi^{(3)}}_z^{ijk}E_i E_j E_k.
+                                \end{cases}
+                            \end{equation}
+                        Thus $\chi^{(3)}$ is type (3,1) rank 4-tensor with 3 contravariant indexes and 1 covariant index.
+                        \item For rank 4 type (2,2): elasticity tensor $\boldsymbol{c}$ \cite{noauthor_hookes_2019}, relates strain tensor $\boldsymbol{\epsilon}$ (in lieu of the displacement X in F=-kX) and the stress tensor $\boldsymbol{\sigma}$ (replacing the restoring force F) as
+                            \begin{equation}
+                                \boldsymbol{\sigma} = - \boldsymbol{c} \boldsymbol{\epsilon},
+                                \label{Hooke's law in tensor form}
+                            \end{equation}
+                            where strain tensor $\boldsymbol{\epsilon}$ and stress tensor $\boldsymbol{\sigma}$ are order 2 tensor with 3-dim.
+                                \begin{multicols}{2}
+                                \setlength{\columnseprule}{0pt}
+                                \noindent
+                                    \begin{equation}
+                                        \boldsymbol{\epsilon} = 
+                                            \begin{pmatrix}
+                                                \epsilon_{xx} & \epsilon_{xy} & \epsilon_{xz}\\
+                                                \epsilon_{yx} & \epsilon_{yy} & \epsilon_{yz}\\
+                                                \epsilon_{zx} & \epsilon_{zy} & \epsilon_{zz}
+                                            \end{pmatrix}
+                                    \end{equation}
+                                    \begin{equation}
+                                        \boldsymbol{\sigma} = 
+                                            \begin{pmatrix}
+                                                \sigma_{xx} & \sigma_{xy} & \sigma_{xz}\\
+                                                \sigma_{yx} & \sigma_{yy} & \sigma_{yz}\\
+                                                \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+                                            \end{pmatrix}.
+                                    \end{equation}
+                                \end{multicols}
+                            The relation between $\boldsymbol{\epsilon}$ and $\boldsymbol{\sigma}$ is connected by $\boldsymbol{c}$ in the form of
+                                \begin{equation}
+                                    \sigma_{ij} = {c_{ij}}^{kl}\epsilon_{kl},
+                                \end{equation}
+                            where common indexes to sum up are $ kl \in \{x,y,z\} $ this time. \\
+                            Thus $\boldsymbol{c}$ is type (2,2) rank 4-tensor with 2 contravariant indexes and 2 covariant indexes.
+                    \end{itemize}
+                }
             \item second-order susceptibility: second-harmonic generation; sum-frequency generation. nonzero only for media that lack an inversion symmetry at the molecular level. 
                 \SubItem{Silica doesn't have this in-symmetry. Only electric-quadrupole and magnetic-dipole moments can generate weak second-order nonlinear effects.Defects or color centers inside the fiber core can also contribute to second-harmonic generation.}
             \item third-order susceptibility: third-harmonic generation; four-wave mixing; nonlinear refraction.
@@ -330,12 +388,20 @@
         
         \subsubsection{Nonlinear Refraction}
             \begin{itemize}
-                \item As \ref{Why nonlinear refraction most important} said, refractive index in the simplest form is:
+                \item As \ref{Why nonlinear refraction most important} said, silica fiber doesn't have second order nonlinearity, thus refractive index in the simplest form is:
                     \begin{equation}
-                        \Tilde{n}(\omega,I) = n(\omega) + n_2 I = n + \overline{n}_2\abs{\boldsymbol{E}^2}.
+                        \Tilde{n}(\omega,I) = n(\omega) + n_2 I = n + \overline{n}_2\abs{\boldsymbol{E}}^2,
                         \label{simplest nonlinear refractive index form}
                     \end{equation}
+                    which is isotropic(This is very important!). In \autoref{simplest nonlinear refractive index form}, $n(\omega)$ is the linear part (This linear doesn't mean Taylor expansion to 1st order, this linear means a linear process, which refractive index has no relation with electric field) given by \autoref{sellmeier equation}. $\overline{n}_2$ is the average $n_2$ over fiber cross-section. Notice $\abs{\boldsymbol{E}}^2$ also evolves some kind of average over the fiber cross-section.
                     
+                \item $\overline{n}_2$ is nonlinear index coefficient, related to  $\chi^{(3)}$ by (will be derived later)
+                    \begin{equation}
+                        \overline{n}_2 = \frac{3}{8n} \Re({ \chi^{(3)} }_x^{xxx}).
+                        \label{n2 bar relation with chi3}
+                    \end{equation}
+                    Notice that optical field E is assumed to be linearly polarized so that only one component ${ \chi^{(3)} }_x^{xxx}$ contributes. Other components can affect polarization by nonlinear birefringence.
+                \item Self-phase modulation (SPM):
             \end{itemize}
 
 
