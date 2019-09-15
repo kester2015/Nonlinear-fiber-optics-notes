@@ -11,7 +11,7 @@
 \usepackage{enumerate}
 \usepackage[utf8]{inputenc}
 \usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
-% \usepackage{xeCJK}
+\usepackage{xeCJK}
 \usepackage{physics}
 \usepackage{hyperref}
 \usepackage{multicol}
@@ -246,7 +246,7 @@
                     \begin{figure}[htbp]
                         \centering
                         \includegraphics[width=0.6\textwidth]{images/fig1.5.PNG}
-                        \caption{Variation of β2, D, and d12 with wavelength for fused silica. Both $\beta_2$ and D vanish at the zero-dispersion wavelength occurring near 1.27 $\mu m$. The $d_{12}$ here stands for $d_{12}(\lambda, 0.8\mu m)$ in \autoref{d12 definition}.}
+                        \caption{Variation of $\beta_2$, D, and d12 with wavelength for fused silica. Both $\beta_2$ and D vanish at the zero-dispersion wavelength($\lambda_D$) occurring near 1.27 $\mu m$. The $d_{12}$ here stands for $d_{12}(\lambda, 0.8\mu m)$ in \autoref{d12 definition}.}
                         \label{fig1.5}
                     \end{figure}
                     
@@ -316,7 +316,10 @@
     \subsection{Fiber Nonlinearities}
         \begin{itemize}
             \item On a fundamental level, the origin of nonlinear response is related to aharmonic motion of bound electrons under the influence of an applied field.
-            \item total polarization P induced by electric dipoles is not linear in the electric field E, but satisfies the more general relation:
+            \item Generally two types of nonlinearity are important in silica nonlinear medium. 
+                \SubItem{The first type doesn't energy exchange between optical fields and the medium, which can be described in the language of electrical polarization (\autoref{general PE relation}) and refractive index (\autoref{n2 bar relation with chi3}).}
+                \SubItem{The second type includes energy exchange between optical field and medium, which is called inelastic scattering process. The phonons induced by this process can be in optical (SRS) or acoustic (SBS).}
+            \item Total polarization P induced by electric dipoles is not linear in the electric field E, but satisfies the more general relation:
                 \begin{equation}
                     \frac{\boldsymbol{P}}{\epsilon_0} = \chi^{(1)} \cdot \boldsymbol{E} + \chi^{(2)} : \boldsymbol{EE} + \chi^{(3)} \vdots \boldsymbol{EEE} + \dots,
                     \label{general PE relation}
@@ -388,21 +391,116 @@
         
         \subsubsection{Nonlinear Refraction}
             \begin{itemize}
-                \item As \ref{Why nonlinear refraction most important} said, silica fiber doesn't have second order nonlinearity, thus refractive index in the simplest form is:
+                \item As \ref{Why nonlinear refraction most important} said, silica fiber doesn't have second order nonlinearity, thus refractive index in the simplest form is (\MakeUppercase{Note: optical intensities I has the units of $W/m^2$}):
                     \begin{equation}
-                        \Tilde{n}(\omega,I) = n(\omega) + n_2 I = n + \overline{n}_2\abs{\boldsymbol{E}}^2,
+                        \Tilde{n}(\omega,I) = n(\omega) + n_2^I I = n(\omega) + \overline{n}_2\abs{\boldsymbol{E}}^2,
                         \label{simplest nonlinear refractive index form}
                     \end{equation}
                     which is isotropic(This is very important!). In \autoref{simplest nonlinear refractive index form}, $n(\omega)$ is the linear part (This linear doesn't mean Taylor expansion to 1st order, this linear means a linear process, which refractive index has no relation with electric field) given by \autoref{sellmeier equation}. $\overline{n}_2$ is the average $n_2$ over fiber cross-section. Notice $\abs{\boldsymbol{E}}^2$ also evolves some kind of average over the fiber cross-section.
-                    
+                \item Because $I=\frac{1}{2}\epsilon_0 c n \abs{\boldsymbol{E}}^2$, $n_2$ and $n_2^I$ are related by:
+                    \begin{equation}
+                        \label{n2 and n2I relation}
+                        n_2^I = \frac{2n_2}{\epsilon_0 c n}
+                    \end{equation}
                 \item $\overline{n}_2$ is nonlinear index coefficient, related to  $\chi^{(3)}$ by (will be derived later)
                     \begin{equation}
-                        \overline{n}_2 = \frac{3}{8n} \Re({ \chi^{(3)} }_x^{xxx}).
+                        \overline{n}_2 = \frac{3}{8n} \Re({{ \chi^{(3)} }_x}^{xxx}).
                         \label{n2 bar relation with chi3}
                     \end{equation}
                     Notice that optical field E is assumed to be linearly polarized so that only one component ${ \chi^{(3)} }_x^{xxx}$ contributes. Other components can affect polarization by nonlinear birefringence.
-                \item Self-phase modulation (SPM):
+                \item Self-phase modulation (SPM): Self induced phase shift during its propagation through nonlinear fibers. Total propagation phase is
+                    \begin{equation}
+                        \phi = \Tilde{n}k_0 L = (n+\overline{n}_2\abs{\boldsymbol{E}}^2)k_0 L .
+                        \label{SPM propagation phase}
+                    \end{equation}
+                    This can be simply understood by refractive index shift due to light intensity. \MakeUppercase{However this simple understanding does not applies Cross-phase modulation situation!}
+                \item Cross-phase modulation (XPM): Involves two(or more) frequency components, optical fields can be expressed by
+                    \begin{equation}
+                        \boldsymbol{E} = \frac{1}{2} \boldsymbol{\hat{x}}[E_1\exp{-i\omega_1t} + E_2\exp{-i\omega_2 t} + c.c.] ,
+                        \label{two mode optical field}
+                    \end{equation}
+                    $\boldsymbol{\hat{x}}$ is polarization direction. The nonlinear phase shift is given by
+                    \begin{equation}
+                        \phi_{NL} = \overline{n}_2 k_0 L(\abs{E_1}^2+2\abs{E_2}^2).
+                        \label{cross phase modulation NL phase shift}
+                    \end{equation}
+                Special notice that for equally intense optical fields of differnet frequency components, \MakeUppercase{XPM is twice that of SPM}. This can not be intuitively derived from \autoref{SPM propagation phase}. Instead this should be understood intuitively from \autoref{general PE relation}. From \autoref{general PE relation}, the nonlinear part of propagation phase is induced by term
+                \begin{equation}
+                    \boldsymbol{P}^{(3)} = \epsilon_0 \chi^{(3)} \vdots \boldsymbol{EEE},
+                \end{equation}
+                which can be generally understood to be in direct ratio to cubed E, $\abs{\boldsymbol{E}}^3$. From \autoref{two mode optical field}, $\abs{\boldsymbol{E}}^3$ can be expressed as
+                \begin{equation}
+                    \begin{split}
+                        \abs{\boldsymbol{E}}^3 &= \frac{1}{8}(E_1\exp{-i\omega_1 t} + E_2\exp{-i\omega_2 t} + E_1^*\exp{i\omega_1 t} + E_2^*\exp{i\omega_2 t})^3\\&
+                        =\frac{1}{8} [E_1\exp{-i\omega_1t}(3\abs{E_1}^2+6\abs{E_2}^2) + \dots].
+                    \end{split}
+                    \label{cube of two mode optical field}
+                \end{equation}
+                Only freq components at $\exp{-i\omega_1t}$ is on resonance with the optical field, and contributes to XPM refractive index. From \autoref{cube of two mode optical field} we have a rough derivation of where does the twice in \autoref{cross phase modulation NL phase shift} comes from. However more detailed derivation (including \autoref{n2 bar relation with chi3}) should originate from Maxwell equation and wave propagation equation, which will be included in the next chapter.
             \end{itemize}
+        \subsubsection{Stimulated Inelastic Scattering}
+            \begin{itemize}
+                \item Vibrational excitation modes stimulated by electromagnetic field in silica, this process is called stimulated inelastic scattering.
+                \item Scattering annihilated a photon of incident field (called pump), create a photon at lower frequency (belonging to Stokes wave) and a phonon to conserve energy and momentum. Some time higher frequency photon can also be generated (belonging to anti-Stokes wave).
+                \item Stimulated Raman scattering (SRS), induces optical phonons in  medium, can occur in both directions. Stimulated Brillouin scattering, occurs only in backward direction.
+                \item The initial growth of Stokes wave can be described by
+                    \begin{multicols}{2}
+                    \setlength{\columnseprule}{0pt}
+                    \noindent
+                        \begin{equation}
+                            \dv{I_s}{z} = g_R I_p I_s,
+                        \end{equation}
+                        \begin{equation}
+                            \dv{I_s}{z} = g_B I_p I_s.
+                        \end{equation}
+                    \end{multicols}
+                    $I_s$ is Stokes intensity, $I_p$ is pump intensity (both have units of $W/m^2$). $g_R$ and $g_B$ are Raman-gain coefficient and Brillouin-gain coefficient. The gain coefficient spectrum are always described by pump-Stokes line detuning. 
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/raman_gain.png}
+                        \caption{Raman gain spectrum of silica, as used e.g. in silica fibers. The quantity on the horizontal axis is the frequency offset of the signal wave with respect to the pump wave.\cite{hollenbeck_multiple-vibrational-mode_2002, paschotta_raman_nodate}}
+                        \label{raman gain spectrum figure}
+                    \end{figure}
+                \item Gain bandwidth:
+                    \SubItem{Raman-gain spectrum is very broad band(optical phonons), peak gain $g_R \approx 6 \times 10^{-14} m/W$ at pump near $1.5 \mu m$ with a spectral shift about 13.1THz.} \SubItem{Brillouin-gain spectrum is very narrow band (<100MHz, acoustic phonons), peak gain $g_B \approx 6 \times 10^{-11} m/W$ at pump near $1.5 \mu m$ with a spectral shift about 10GHz. Also $g_B$ decreases by a factor of $\Delta \nu_p/\Delta \nu_B$ for a broad-bandwidth pump. $\Delta \nu_p$ is pump bandwidth and $\Delta \nu_B$ is Brillouin-gain bandwidth.} 
+                \item Threshold behavior:
+                    \SubItem{For SRS in a single mode fiber, with $\alpha \gg 1$ ($\alpha$ see \autoref{attenuation constant}), which means pump power is almost attenuated to 0 and leav only Raman lines. A threshold pump intensity is given by \cite{smith_optical_1972}
+                    \begin{equation}
+                        I_P^{th} \approx 16(\frac{\alpha}{g_R}).
+                    \end{equation}
+                    Typically $I_P^{th} \approx 10mW/cm^2$, SRS can be observed at a pump power $\approx 1W$.
+                    }
+                    \SubItem{Similar to SRS, SBS threshold is given by\cite{smith_optical_1972}
+                    \begin{equation}
+                        I_p^{th} \approx 21(\frac{\alpha}{g_B}).
+                    \end{equation}
+                    As gain efficient differs nearly three orders, typical SBS threshold are $\approx 1mW$.
+                    }
+            \end{itemize}
+        \subsubsection{Importance of Nonlinear Effects}
+             \begin{itemize}
+                 \item Typical $n_2$ in silica fiber yield in range of $2.2-3.4 \times 10^{-20} m^2/W$, which is at least 2-order smaller than other nonlinear medium.
+                 \item Two factors contributed to the enhancement:
+                    \SubItem{Small spot size $\< 10\mu m$.}
+                    \SubItem{Low loss $<1dB/km$ in wavelength $1.0-1.6 \mu m$.}
+                    
+                    These two factors dramatically enhanced the effective interaction length. In bulked silica, interaction length is considered to be related to light focal region $\approx \pi w_0^2/\lambda$. However in fiber the whole transmission length can be considered to be effective interaction length.
+             \end{itemize}
+    \subsection{Overview}
+        \begin{itemize}
+            \item Chapter 1-3: background and mathematical tools.
+                \SubItem{Chapter 2: Mathematical framework starting from Maxwell's equation. Including important approximations and numerical methods.}
+                \SubItem{Chapter 3: Group velocity Dispersions (GVD, see \autoref{beta2 definition}) when incident power and fiber length are such that nonlinear effect are negligible. GVD (temporal broadening) and effects of frequency chirp. High order effects near $\lambda_D$ (See \autoref{fig1.5}).}
+            \item Chapter 4-7: Non-scattering nonlinear effects and its spectral and temporal effects.
+                \SubItem{Chapter 4: SPM (Self-phase modulation), causes spectrum broadening. Pulse shape also affected when GVD and SPM affects together.}
+                \SubItem{Chapter 5: Optical Solitons. Modulation instability due to the interplay of GVD and nonlinear effects in anomalous-GVD (See \autoref{Summary of normal and anomalous dispersion}) regime. Topics includes: High order solitons, inverse scattering method to solve nonlinear Schrodinger equation; Dark solitons; Soliton decay related to higher-order nonlinear and dispersive effects.}
+                \SubItem{Chapter 6-7: XPM. Chapter 6 focus on XPM between orthogonally polarized components. Included optical Kerr effect and birefringence-induced pulse shaping. Chapter 7 foucs on XPM between different wavelengths, XPM-interaction lead to modulation instability even in normal-GVD regime. Asymmetric spectral and temporal changes when consider XPM, SPM and GVD together. XPM-interaction between counterpropagating waves, which is important in gyroscopes.}
+            \item Chapter 8-12: Nonlinear effects generate new optical wavelengths.
+                \SubItem{Chapter 8: SRS. Raman gain and Raman threshold. SRS for CW wave and short pulse. Some features are leaded with conbination of SPM, XPM, GVD. And significantly different for normal-GVD and anormalous-GVD (fiber-Raman soliton lasers). Polariaztion effects.}
+                \SubItem{Chapter 9: SBS. Transfer energy only to counterpropagating Stokes wave. Only when CW or pulse spectral width smaller than Brillouin bandwidth. Effects including: Brillouin threshold, pump depletion, gain saturation; Fiber-based Brillouin amplifiers; Brillouin fiber lasers.}
+                \SubItem{Chapter 10: FWM (Four-wave mixing). This can efficiently occur only when phase matched. Phase-matching technique; Parametric amplification; Polariaztion effects.}
+                \SubItem{Chapter 11-12: Highly-nonlinear fibers. Chapter 11 introduces techniques to measure fiber parameters and four types of highly nonlinear fibers. Chapter 12 discussed intrapulse Raman scattering and FWM, supercontinuum generation, second- and third-harmonic generation.}
+        \end{itemize}
 
 
 % \subsubsection{effective red and blue detune}
