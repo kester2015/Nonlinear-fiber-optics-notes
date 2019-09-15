@@ -63,6 +63,7 @@
 \newcommand{\SubItem}[1]{
     {\setlength\itemindent{15pt} \item[-] #1}
 }
+\newcommand{\Lap}{\boldsymbol{\bigtriangledown}}
 
 
 \setlength{\columnseprule}{1 pt}
@@ -502,7 +503,79 @@
                 \SubItem{Chapter 11-12: Highly-nonlinear fibers. Chapter 11 introduces techniques to measure fiber parameters and four types of highly nonlinear fibers. Chapter 12 discussed intrapulse Raman scattering and FWM, supercontinuum generation, second- and third-harmonic generation.}
         \end{itemize}
 
-
+\section{Pulse Propagation in Fibers}
+    \subsection{Maxwell's Equations}
+        Simply reminder, Maxwell equation in medium (NOT necessary linear) is:
+        \begin{subequations}
+        \label{Maxwell's equation}
+            \begin{align}
+                \boldsymbol{\bigtriangledown} \times \boldsymbol{E} &= -\pdv{\boldsymbol{B}}{t} \label{Maxwell equation: cor E} \\
+                \boldsymbol{\bigtriangledown} \times \boldsymbol{H} &= \boldsymbol{J} + \pdv{\boldsymbol{D}}{t} \label{Maxwell equation: cor H}\\
+                \boldsymbol{\bigtriangledown} \cdot \boldsymbol{D} &= \rho_f \label{Maxwell equation: div D}\\
+                \boldsymbol{\bigtriangledown} \cdot \boldsymbol{B} &= 0 \label{Maxwell equation: div B}
+            \end{align}
+        \end{subequations}
+        In free charge absent medium, $\rho_f=0$, $\boldsymbol{J}=\boldsymbol{0}$.
+        \begin{subequations}
+            \label{Medium electric relations}
+            \begin{align}
+                \boldsymbol{D} &= \epsilon_0 \boldsymbol{E} + \boldsymbol{P} = \epsilon \epsilon_0 \boldsymbol{E} \label{medium electric: D, E, P}\\
+                \boldsymbol{B} &= \mu_0 \boldsymbol{H} + \boldsymbol{M} \label{medium electric: B, H, M}
+            \end{align}
+        \end{subequations}
+        \MakeUppercase{Note that in the second equal of \autoref{medium electric: D, E, P}, Linear medium is required. As long as $\epsilon$ is written, linear medium is required.} In nonmagnetic medium, $\boldsymbol{M}=\boldsymbol{0}$. Remind that we used to write $\epsilon = 1 + \chi$, when we were dealing with linear medium.\\
+        Propagation equation can be derived from Maxwell's equation \autoref{Maxwell equation: cor E}, \autoref{Maxwell equation: div D} and \autoref{medium electric: D, E, P}.\\
+        For nonlinear version:
+            \begin{equation}
+                \Lap \times (\Lap\times\boldsymbol{E}) = -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P_L}}-\mu_0\pdv[2]{\boldsymbol{P_{NL}}}{t}
+            \end{equation}
+        Since now we consider linear situation, which is the basis of Nonlinear perturbation.
+            \begin{equation}
+                \begin{split}
+                    \Lap \times (\Lap\times\boldsymbol{E}) &= -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P}}{t}\\
+                    &=-\frac{\epsilon}{c^2}\pdv[2]{\boldsymbol{E}}{t}
+                \end{split}
+                \label{Propagation E equation: E and P}
+            \end{equation}
+        Write \autoref{Propagation E equation: E and P} in frequency domain, (In fact this is an Laplace transformation)
+            \begin{subequations}
+                \label{E in time domain and frequency domain}
+                \begin{align}
+                    \Tilde{\boldsymbol{E}}(\boldsymbol{r},\omega) &= \int_{-\infty}^{\infty} \boldsymbol{E}(\boldsymbol{r},t)\exp{i\omega t}dt\label{From E in time domain to E in freq domain},\\
+                    \boldsymbol{E}(\boldsymbol{r},t) &=\frac{1}{2\pi} \int_{-\infty}^{\infty} \Tilde{\boldsymbol{E}}(\boldsymbol{r},\omega)\exp{-i\omega t}d\omega ,\label{From E in freq domain to E in time domain}
+                \end{align}
+            \end{subequations}
+        we can get:
+            \begin{equation}
+                \Lap^2\Tilde{\boldsymbol{E}}+\epsilon(\omega)\frac{\omega^2}{c^2}\Tilde{\boldsymbol{E}}=0.
+                \label{Propagation E equation in freq domain}
+            \end{equation}
+        Used relation:
+            \begin{equation}
+                \Lap\times(\Lap\times\boldsymbol{E})=\Lap(\Lap\cdot\boldsymbol{E})-\Lap^2\boldsymbol{E}=-\Lap^2\boldsymbol{E}.
+            \end{equation}
+        From the definition of $\epsilon$,
+            \begin{equation}
+                \epsilon = (n + \frac{i\alpha c}{2\omega})^2,
+                \label{relation between epsilon, n and alpha}
+            \end{equation}
+        where $\alpha$ is the one in \autoref{attenuation constant}. When $\alpha$ is small enough, \autoref{Propagation E equation in freq domain} can also be written as
+            \begin{equation}
+                \label{Propagation E equation in freq domain: small attenuation circumstance}
+                \Lap^2\Tilde{\boldsymbol{E}}+n^2(\omega)\frac{\omega^2}{c^2}\Tilde{\boldsymbol{E}}=0.
+            \end{equation}
+        Also, $\epsilon(\omega)=1+\Tilde{\chi}^{(1)}(\omega)$, using \autoref{relation between epsilon, n and alpha} and an approximation of $\frac{\alpha^2c^2}{4\omega^2}+\Re{\chi^{(1)}} \ll 1$, we can get
+            \begin{subequations}
+                \begin{align}
+                    n(\omega) &= 1+\frac{1}{2}\Re{\Tilde{\chi^{(1)}}},\\
+                    \alpha(\omega) &=\frac{\omega}{nc}\Im{\Tilde{\chi^{(1)}}}.
+                \end{align}
+            \end{subequations}
+            
+    \subsection{Fiber Modes}
+        \subsubsection{Eigenvalue Equation}
+            
+            
 % \subsubsection{effective red and blue detune}
 
 
