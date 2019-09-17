@@ -76,9 +76,11 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
+\newpage
+
 
 \section{Introduction}
-
     \subsection{Historical prospective}
     
         \begin{itemize}
@@ -503,33 +505,40 @@
                 \SubItem{Chapter 11-12: Highly-nonlinear fibers. Chapter 11 introduces techniques to measure fiber parameters and four types of highly nonlinear fibers. Chapter 12 discussed intrapulse Raman scattering and FWM, supercontinuum generation, second- and third-harmonic generation.}
         \end{itemize}
 
+\newpage
 \section{Pulse Propagation in Fibers}
     \subsection{Maxwell's Equations}
         Simply reminder, Maxwell equation in medium (NOT necessary linear) is:
         \begin{subequations}
         \label{Maxwell's equation}
             \begin{align}
-                \boldsymbol{\bigtriangledown} \times \boldsymbol{E} &= -\pdv{\boldsymbol{B}}{t} \label{Maxwell equation: cor E} \\
-                \boldsymbol{\bigtriangledown} \times \boldsymbol{H} &= \boldsymbol{J} + \pdv{\boldsymbol{D}}{t} \label{Maxwell equation: cor H}\\
-                \boldsymbol{\bigtriangledown} \cdot \boldsymbol{D} &= \rho_f \label{Maxwell equation: div D}\\
-                \boldsymbol{\bigtriangledown} \cdot \boldsymbol{B} &= 0 \label{Maxwell equation: div B}
+                &\boldsymbol{\bigtriangledown} \times \boldsymbol{E} = -\pdv{\boldsymbol{B}}{t} \label{Maxwell equation: cor E} \\
+                &\boldsymbol{\bigtriangledown} \times \boldsymbol{H} = \boldsymbol{J} + \pdv{\boldsymbol{D}}{t} \label{Maxwell equation: cor H}\\
+                &\boldsymbol{\bigtriangledown} \cdot \boldsymbol{D} = \rho_f \label{Maxwell equation: div D}\\
+                &\boldsymbol{\bigtriangledown} \cdot \boldsymbol{B} = 0 \label{Maxwell equation: div B}
             \end{align}
         \end{subequations}
-        In free charge absent medium, $\rho_f=0$, $\boldsymbol{J}=\boldsymbol{0}$.
+        In free charge absent medium, $\rho_f=0$, $\boldsymbol{J}=\boldsymbol{0}$. $\boldsymbol{D}$ and $\boldsymbol{B}$ are related with $\boldsymbol{E}$ and $\boldsymbol{H}$ by constitutive relations
         \begin{subequations}
             \label{Medium electric relations}
             \begin{align}
-                \boldsymbol{D} &= \epsilon_0 \boldsymbol{E} + \boldsymbol{P} = \epsilon \epsilon_0 \boldsymbol{E} \label{medium electric: D, E, P}\\
-                \boldsymbol{B} &= \mu_0 \boldsymbol{H} + \boldsymbol{M} \label{medium electric: B, H, M}
+                \boldsymbol{D} &= \epsilon_0 \boldsymbol{E} + \boldsymbol{P}, \label{medium electric: D, E, P}\\
+                \boldsymbol{B} &= \mu_0 \boldsymbol{H} + \boldsymbol{M}. \label{medium electric: B, H, M}
             \end{align}
         \end{subequations}
-        \MakeUppercase{Note that in the second equal of \autoref{medium electric: D, E, P}, Linear medium is required. As long as $\epsilon$ is written, linear medium is required.} In nonmagnetic medium, $\boldsymbol{M}=\boldsymbol{0}$. Remind that we used to write $\epsilon = 1 + \chi$, when we were dealing with linear medium.\\
+        In nonmagnetic medium, $\boldsymbol{M}=\boldsymbol{0}$.\\
         Propagation equation can be derived from Maxwell's equation \autoref{Maxwell equation: cor E}, \autoref{Maxwell equation: div D} and \autoref{medium electric: D, E, P}.\\
-        For nonlinear version:
             \begin{equation}
-                \Lap \times (\Lap\times\boldsymbol{E}) = -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P_L}}-\mu_0\pdv[2]{\boldsymbol{P_{NL}}}{t}
+                \Lap \times (\Lap\times\boldsymbol{E}) = -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P}}{t}
             \end{equation}
-        Since now we consider linear situation, which is the basis of Nonlinear perturbation.
+        For nonlinear version, $\boldsymbol{P} = \boldsymbol{P_L}+\boldsymbol{P_{NL}}$:
+            \begin{equation}
+                \Lap \times (\Lap\times\boldsymbol{E}) = -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P_L}}{t}-\mu_0\pdv[2]{\boldsymbol{P_{NL}}}{t}
+            \end{equation}
+            
+        % \MakeUppercase{Note that in the second equal of} \autoref{medium electric: D, E, P}, \MakeUppercase{Linear medium is required. As long as $\epsilon$ is written, linear medium is required.}  Remind that we used to write $\epsilon = 1 + \chi$, when we were dealing with linear medium.\\
+        
+        Usually $P_{NL}$ is treated as perturbation. Thus since now we consider linear situation, which is the basis of Nonlinear perturbation.
             \begin{equation}
                 \begin{split}
                     \Lap \times (\Lap\times\boldsymbol{E}) &= -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P}}{t}\\
@@ -537,7 +546,7 @@
                 \end{split}
                 \label{Propagation E equation: E and P}
             \end{equation}
-        Write \autoref{Propagation E equation: E and P} in frequency domain, (In fact this is an Laplace transformation)
+        Remind that we write $\epsilon = 1 + \chi$, when we were dealing with linear medium, $\boldsymbol{D} = \epsilon\epsilon_0\boldsymbol{E}$. Rewrite \autoref{Propagation E equation: E and P} in frequency domain, (In fact this is an Laplace transformation)
             \begin{subequations}
                 \label{E in time domain and frequency domain}
                 \begin{align}
@@ -545,7 +554,7 @@
                     \boldsymbol{E}(\boldsymbol{r},t) &=\frac{1}{2\pi} \int_{-\infty}^{\infty} \Tilde{\boldsymbol{E}}(\boldsymbol{r},\omega)\exp{-i\omega t}d\omega ,\label{From E in freq domain to E in time domain}
                 \end{align}
             \end{subequations}
-        we can get:
+        we can get (Basically is to change $\partial_t$ to $i\omega$):
             \begin{equation}
                 \Lap^2\Tilde{\boldsymbol{E}}+\epsilon(\omega)\frac{\omega^2}{c^2}\Tilde{\boldsymbol{E}}=0.
                 \label{Propagation E equation in freq domain}
@@ -554,12 +563,12 @@
             \begin{equation}
                 \Lap\times(\Lap\times\boldsymbol{E})=\Lap(\Lap\cdot\boldsymbol{E})-\Lap^2\boldsymbol{E}=-\Lap^2\boldsymbol{E}.
             \end{equation}
-        From the definition of $\epsilon$,
+        The definition of $\epsilon$ is
             \begin{equation}
-                \epsilon = (n + \frac{i\alpha c}{2\omega})^2,
+                \epsilon = (n + \frac{i\alpha c}{2\omega})^2
                 \label{relation between epsilon, n and alpha}
             \end{equation}
-        where $\alpha$ is the one in \autoref{attenuation constant}. When $\alpha$ is small enough, \autoref{Propagation E equation in freq domain} can also be written as
+        when dispersion and attenuation is evolved. $\alpha$ is the attenuation constant in \autoref{attenuation constant}. When $\alpha$ is small enough, \autoref{Propagation E equation in freq domain} can also be written as
             \begin{equation}
                 \label{Propagation E equation in freq domain: small attenuation circumstance}
                 \Lap^2\Tilde{\boldsymbol{E}}+n^2(\omega)\frac{\omega^2}{c^2}\Tilde{\boldsymbol{E}}=0.
@@ -571,10 +580,64 @@
                     \alpha(\omega) &=\frac{\omega}{nc}\Im{\Tilde{\chi^{(1)}}}.
                 \end{align}
             \end{subequations}
+        The same procedure of getting \autoref{Propagation E equation in freq domain: small attenuation circumstance} can be done to $\Tilde{\boldsymbol{H}}$,
+            \begin{equation}
+                \label{Propagation H equation in freq domain: small attenuation circumstance}
+                \Lap^2\Tilde{\boldsymbol{H}}+n^2(\omega)\frac{\omega^2}{c^2}\Tilde{\boldsymbol{H}}=0.
+            \end{equation}
             
     \subsection{Fiber Modes}
         \subsubsection{Eigenvalue Equation}
-            
+            \begin{itemize}
+                \item \autoref{Propagation E equation in freq domain: small attenuation circumstance} in cylindrical coordinates $\rho,\phi,z$ is
+                    \begin{equation}
+                        \pdv[2]{\Tilde{\boldsymbol{E}}}{\rho}+\frac{1}{\rho}\pdv{\Tilde{\boldsymbol{E}}}{\rho}+\frac{1}{\rho^2}\pdv[2]{\Tilde{\boldsymbol{E}}}{\phi}+\pdv[2]{\Tilde{\boldsymbol{E}}}{z}+n^2k_0^2\Tilde{\boldsymbol{E}}=0.
+                    \end{equation}
+                \item $\Tilde{\boldsymbol{E}}$ and $\Tilde{\boldsymbol{H}}$ each contains 3 dimensions of components($\Tilde{E_Z}$, $\Tilde{E_\rho}$, $\Tilde{E_\phi}$; $\Tilde{H_Z}$, $\Tilde{H_\rho}$, $\Tilde{H_\phi}$). These 6 components satisfies 4 equations in \autoref{Maxwell's equation}. Thus only two components of 6 are independent, choose $\Tilde{E_z}$ and $\Tilde{H_z}$. 
+                
+                \item Separation of variables:
+                    \begin{equation}
+                        \Tilde{E_z} = A(\omega)F(\rho)\exp{im\phi}\exp{i\beta z}.
+                    \end{equation}
+                    $\beta$ is propagation constant, $m$ is an integer. $F(\rho)$ is the solution of
+                    \begin{equation}
+                        \dv[2]{F}{\rho} + \frac{1}{\rho}\dv{F}{\rho}+(n^2k_0^2-\beta^2-\frac{m^2}{\rho^2})F=0
+                        \label{Equation F of rho satisfies}
+                    \end{equation}
+                    \SubItem{For $\rho < a$, a is core radius:
+                        \begin{equation}
+                            \begin{split}
+                                F(\rho)&=C_1 J_m(p\rho)+C_2 N_m(p\rho).\\
+                                p &= \sqrt{n_1^2k_0^2-\beta^2}
+                                \label{Electric mode in the core}
+                            \end{split}
+                        \end{equation}
+                        $J_m(p\rho)$ and $N_m(p\rho)$ are Bessel and Neumann function respectively. Requiring $n_1^2k_0^2-\beta^2 > 0$. To avoid singularity at $\rho = 0$, $C_2 = 0$ required for a physically meaningful solution.
+                    }
+                    \SubItem{For $\rho > a$, a is core radius:
+                        \begin{equation}
+                            \begin{split}
+                                F(\rho)&=K_m(q\rho).\\
+                                q &= \sqrt{\beta^2-n_c^2k_0^2}
+                                \label{Electric mode in the cladder}
+                            \end{split}
+                        \end{equation}
+                        $K_m(q\rho)$ is the second type of virtual scalar Bessel function. Requiring $n_c^2k_0^2-\beta^2 < 0$}. (This choice aims for exponential decay along $\rho$ direction.)
+                \item Eigenvalue equation: from the tangential components continuous of $\Tilde{E_Z}$, $\Tilde{E_\phi}$; $\Tilde{H_Z}$, $\Tilde{H_\phi}$, we get eigenvalue $\beta$ equation:
+                    \begin{equation}
+                        [\frac{J_m^{'} (pa)}{pJ_m(pa)}+\frac{K_m^{'} (qa)}{qK_m(qa)}][\frac{J_m^{'} (pa)}{pJ_m(pa)}+\frac{n_c^2}{n_1^2}\frac{K_m^{'} (qa)}{qK_m(qa)}]=(\frac{m\beta k_0(n_1^2-n_c^2)}{an_1 pq})^2.
+                        \label{eigen value equation of beta}
+                    \end{equation}
+                    Each m has a series of solution $\beta_mn$. Each $\beta_mn$ corresponds to a mode.
+                \item Cut off freq: Accroding to \autoref{Electric mode in the core} and \autoref{Electric mode in the cladder}, we get
+                    \begin{equation}
+                        p^2+q^2=(n_1^2-n_c^2)k_0^2.
+                        \label{equation to solve cut off freq}
+                    \end{equation}
+                    Cut off freq is determined by $p_c$ when q = 0. Define V as \autoref{V parameter}. For single mode fiber, $V<V_c$ then all modes except $HE_{11}$ mode are cut off. where $V_c$ is the smallest solution of $J_0(V_c)=0$, or $V_c\approx 2.405$.
+                \item Example: If $n_1-n_c=0.005$, $a=4\mu m$, from \autoref{equation to solve cut off freq} we can get $\lambda_c=1.2\mu m$ ($k_0=2\pi/\lambda_c$).Such fiber supports single mode only when $\lambda>\lambda_c=1,2\mu m$. To support single mode in visible region, typically $a<2\mu m$.
+             \end{itemize}
+        \subsubsection{Characteristics of the Fundamental Mode}
             
 % \subsubsection{effective red and blue detune}
 
@@ -622,6 +685,8 @@
 % In all cases, \eqref{eq:Pn} is true, so $\forall n\in \N$, 
 % $\Disp \sum_{k=0}^n k = \dfrac{n(n+1)}{2}$
 % \end{proof}
+\newpage
 \bibliographystyle{IEEEtran}
+% \bibliographystyle{plain}
 \bibliography{references.bib}
 \end{document}
