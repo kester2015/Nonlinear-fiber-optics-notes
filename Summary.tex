@@ -534,6 +534,7 @@
         For nonlinear version, $\boldsymbol{P} = \boldsymbol{P_L}+\boldsymbol{P_{NL}}$:
             \begin{equation}
                 \Lap \times (\Lap\times\boldsymbol{E}) = -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}-\mu_0\pdv[2]{\boldsymbol{P_L}}{t}-\mu_0\pdv[2]{\boldsymbol{P_{NL}}}{t}
+                \label{propagating equation of E with PL and PNL: including laplace symbol}
             \end{equation}
             
         % \MakeUppercase{Note that in the second equal of} \autoref{medium electric: D, E, P}, \MakeUppercase{Linear medium is required. As long as $\epsilon$ is written, linear medium is required.}  Remind that we used to write $\epsilon = 1 + \chi$, when we were dealing with linear medium.\\
@@ -562,6 +563,7 @@
         Used relation:
             \begin{equation}
                 \Lap\times(\Lap\times\boldsymbol{E})=\Lap(\Lap\cdot\boldsymbol{E})-\Lap^2\boldsymbol{E}=-\Lap^2\boldsymbol{E}.
+                \label{double crossing laplace relation}
             \end{equation}
         The definition of $\epsilon$ is
             \begin{equation}
@@ -592,6 +594,7 @@
                 \item \autoref{Propagation E equation in freq domain: small attenuation circumstance} in cylindrical coordinates $\rho,\phi,z$ is
                     \begin{equation}
                         \pdv[2]{\Tilde{\boldsymbol{E}}}{\rho}+\frac{1}{\rho}\pdv{\Tilde{\boldsymbol{E}}}{\rho}+\frac{1}{\rho^2}\pdv[2]{\Tilde{\boldsymbol{E}}}{\phi}+\pdv[2]{\Tilde{\boldsymbol{E}}}{z}+n^2k_0^2\Tilde{\boldsymbol{E}}=0.
+                        \label{maxwell equation in cylindrical coordinates}
                     \end{equation}
                 \item $\Tilde{\boldsymbol{E}}$ and $\Tilde{\boldsymbol{H}}$ each contains 3 dimensions of components($\Tilde{E_Z}$, $\Tilde{E_\rho}$, $\Tilde{E_\phi}$; $\Tilde{H_Z}$, $\Tilde{H_\rho}$, $\Tilde{H_\phi}$). These 6 components satisfies 4 equations in \autoref{Maxwell's equation}. Thus only two components of 6 are independent, choose $\Tilde{E_z}$ and $\Tilde{H_z}$. 
                 
@@ -628,8 +631,8 @@
                         [\frac{J_m^{'} (pa)}{pJ_m(pa)}+\frac{K_m^{'} (qa)}{qK_m(qa)}][\frac{J_m^{'} (pa)}{pJ_m(pa)}+\frac{n_c^2}{n_1^2}\frac{K_m^{'} (qa)}{qK_m(qa)}]=(\frac{m\beta k_0(n_1^2-n_c^2)}{an_1 pq})^2.
                         \label{eigen value equation of beta}
                     \end{equation}
-                    Each m has a series of solution $\beta_mn$. Each $\beta_mn$ corresponds to a mode.
-                \item Cut off freq: Accroding to \autoref{Electric mode in the core} and \autoref{Electric mode in the cladder}, we get
+                    Each m has a series of solution $\beta_mn$. Each $\beta_mn$ corresponds to a mode. See derivations in Chapter 2 of \cite{marcuse_theory_1991}.
+                \item Cut off freq: According to \autoref{Electric mode in the core} and \autoref{Electric mode in the cladder}, we get
                     \begin{equation}
                         p^2+q^2=(n_1^2-n_c^2)k_0^2.
                         \label{equation to solve cut off freq}
@@ -638,7 +641,90 @@
                 \item Example: If $n_1-n_c=0.005$, $a=4\mu m$, from \autoref{equation to solve cut off freq} we can get $\lambda_c=1.2\mu m$ ($k_0=2\pi/\lambda_c$).Such fiber supports single mode only when $\lambda>\lambda_c=1,2\mu m$. To support single mode in visible region, typically $a<2\mu m$.
              \end{itemize}
         \subsubsection{Characteristics of the Fundamental Mode}
+            \begin{itemize}
+                \item Single mode fiber supports only $HE_11$ mode, which has three non-zero components $\Tilde{E_\rho}$, $\Tilde{E_\phi}$; $\Tilde{E_Z}$. Either x- or y- are leading part. Two poliarization parts are contained.
+                \item $LP_{mn}$ denotes linear poliazed modes, which are APPROXIMATE solutions of \autoref{maxwell equation in cylindrical coordinates}.  $HE_{11}$ corresponds to $LP_{01}$.
+                \item Give $LP_{11}$ as 
+                    \begin{equation}
+                        \Tilde{\boldsymbol{E}}(\boldsymbol{r},\omega) = \hat{x}{A(\omega)F(x,y)\exp{i\beta(\omega)z}}.
+                    \end{equation}
+                    \SubItem{For $\rho<a$, ($\rho=\sqrt{x^2+y^2}$)
+                        \begin{equation}
+                            F(x,y)=J_0(p\rho)
+                            \label{fundamental electric mode in core}
+                        \end{equation}
+                    }
+                    \SubItem{For $\rho>a$, Take the approximation of $K_m(q\rho)$ in \autoref{Electric mode in the cladder}, and  a constant factor to ensure the equality of F at $\rho=a$, we get
+                        \begin{equation}
+                            F(x,y)=\sqrt{\frac{a}{\rho}}J_0(pa)\exp{-q(\rho-a)}.
+                            \label{fundamental electric mode in cladder}
+                        \end{equation}
+                    }
+                \item A good approximation of \autoref{fundamental electric mode in core} and \autoref{fundamental electric mode in cladder} is a Gaussian function:
+                    \begin{equation}
+                        F(x,y)=\exp{-\frac{x^2+y^2}{w^2}},
+                    \end{equation}
+                    The fitting can be seen on right plot of \autoref{fig2.1}. w is related with V (\autoref{V parameter}) by a fitting:
+                    \begin{equation}
+                        \frac{w}{a} \approx 0.65+1.619V^{-1.5}+2.879V^{-6}.
+                    \end{equation}
+                    The plot of w(V) can be seen at left plot of \autoref{fig2.1}.
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/fig2.1.PNG}
+                        \caption{Variation of mode-width parameter w with V obtained by fitting the fundamental
+                        fiber mode to a Gaussian distribution. Traces on the right show the quality of fit for V = 2.4}
+                        \label{fig2.1}
+                    \end{figure}
+            \end{itemize}
+    \subsection{Pulse-Propagation Equation}
+        \begin{itemize}
+            \item Optical pulses: time width ranging from $\approx10 fs$ to $\approx10 ns$.
+            \item The basis of this chapter is \autoref{propagating equation of E with PL and PNL: including laplace symbol}, using \autoref{double crossing laplace relation} and rewrite it here as:
+                \begin{equation}
+                    \Lap^2\boldsymbol{E} -\frac{1}{c^2}\pdv[2]{\boldsymbol{E}}{t}=\mu_0\pdv[2]{\boldsymbol{P_L}}{t}+\mu_0\pdv[2]{\boldsymbol{P_{NL}}}{t}
+                \end{equation}
+            \item $\chi$'s Time dependence and Dispersion, as well as their relation:\\
+                Usually $\boldsymbol{P}$ is written as
+                \begin{subequations}
+                    \begin{align}
+                        &\boldsymbol{P}_L(\boldsymbol{r}) = \epsilon_0 \chi^{(1)}\boldsymbol{E}\\
+                        &\boldsymbol{P}_{NL}(\boldsymbol{r}) = \epsilon_0 \chi^{(3)} \vdots \boldsymbol{EEE}
+                    \end{align}
+                    \label{P instantly response to E}
+                \end{subequations}
+                \autoref{P instantly response to E} is to say that $\boldsymbol{P}$ and $\boldsymbol{E}$ are in simultaneously response:
+                \begin{subequations}
+                    \begin{align}
+                        \chi^{(1)}(t)&=\chi^{(1)}(0)\delta(t),\\
+                        \chi^{(3)}(t_1,t_2,t_3)&=\chi^{(3)}(0,0,0)\delta(t_1)\delta(t_2)\delta(t_3).
+                    \end{align}
+                    \label{no dispersion chi: time domain}
+                \end{subequations}
+                Also this implies that $\chi$ (1) and (3) don't have dispersion:
+                \begin{subequations}
+                    \begin{align}
+                        \Tilde{\chi}^{(1)}(\omega)&=\Tilde{\chi}^{(1)}(0),\\
+                        \Tilde{\chi}^{(3)}(\omega_1,\omega_2,\omega_3)&=\Tilde{\chi}^{(3)}(0,0,0).
+                    \end{align}
+                    \label{no dispersion chi: freq domain}
+                \end{subequations}
+                And thus \autoref{P instantly response to E} can be written as:
+                \begin{subequations}
+                    \begin{align}
+                        &\boldsymbol{P}_L(\boldsymbol{r},t)=\epsilon_0\int_{-\infty}^t \chi^{(1)}(t-t^{'})\boldsymbol{E}(\boldsymbol{r},t^{'})dt^{'}\\
+                        &\boldsymbol{P}_{NL}(\boldsymbol{r},t)=\epsilon_0\int_{-\infty}^t dt_1\int_{-\infty}^t dt_2\int_{-\infty}^t dt_3 \chi^{(3)}(t-t_1,t-t_2,t-t_3)\vdots \boldsymbol{E}(\boldsymbol{r},t_1)\boldsymbol{E}(\boldsymbol{r},t_2)\boldsymbol{E}(\boldsymbol{r},t_3)
+                    \end{align}
+                    \label{P not instantly response to E, with dispersion}
+                \end{subequations}
+                \autoref{P not instantly response to E, with dispersion} is the general expression when \autoref{no dispersion chi: time domain} and \autoref{no dispersion chi: freq domain} don't satisfies. Also to notice that $\chi$ with dispersion means in time domain $\chi$ explicitly depends on t.
+                
+        \end{itemize}
             
+            
+            
+\newpage
+\section{Group-Velocity Dispersion}
 % \subsubsection{effective red and blue detune}
 
 
