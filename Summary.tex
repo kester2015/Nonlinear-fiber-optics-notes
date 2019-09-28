@@ -64,7 +64,8 @@
     {\setlength\itemindent{15pt} \item[-] #1}
 }
 \newcommand{\Lap}{\boldsymbol{\bigtriangledown}}
-
+\newcommand{\chiOne}{{{\chi^{(1)}}_x}^x}
+\newcommand{\chiThree}{{{\chi^{(3)}}_x}^{xxx}}
 
 \setlength{\columnseprule}{1 pt}
 
@@ -725,8 +726,8 @@
                 \autoref{P not instantly response to E, with dispersion} is the general expression when \autoref{no dispersion chi: time domain} and \autoref{no dispersion chi: freq domain} don't satisfies. Also to notice that $\chi$ \MakeUppercase{with dispersion means in time domain} $\chi$ \MakeUppercase{has delay in t}. \\The \autoref{P not instantly response to E, with dispersion} is actually a form of convolution. Using the fourier transform properties in convoultion, we can get a form of \autoref{P not instantly response to E, with dispersion} which is more important:
                 \begin{subequations}
                 \begin{align}
-                    &\Tilde{\boldsymbol{P}_L}(\boldsymbol{r},\omega)=\chi^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\\
-                    &\Tilde{\boldsymbol{P}_{NL}}(\boldsymbol{r},\omega)=\chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)
+                    &\Tilde{\boldsymbol{P}_L}(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\label{PL not instantly response to E: freq domain}\\
+                    &\Tilde{\boldsymbol{P}_{NL}}(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)\label{PNL not instantly response to EEE: freq domain}
                 \end{align}
                 \end{subequations}
             \item Quick evolving term and slow evolving terms separation:\\
@@ -753,7 +754,7 @@
                     =&\epsilon_0 {{\chi^{(3)}}_x}^{xxx} \frac{1}{8}(E(\boldsymbol{r},t)\exp{-i\omega_0 t}+E^{*}(\boldsymbol{r},t)\exp{i\omega_0 t})^3\\
                     =&\frac{1}{8} \epsilon_0 {{\chi^{(3)}}_x}^{xxx}(3\abs{E(\boldsymbol{r},t)}^2 E(\boldsymbol{r},t)\exp{-i\omega_0 t}+3\abs{E(\boldsymbol{r},t)}^2 E^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}\\
                     &+E^3(\boldsymbol{r},t)\exp{-3i\omega_0 t}+E^{*3}(\boldsymbol{r},t)\exp{3i\omega_0 t})\\
-                    =&\frac{1}{8}(P_{NL}(\boldsymbol{r},t)\exp{-i\omega_0 t}+P_{NL}^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}).
+                    =&\frac{1}{2}(P_{NL}(\boldsymbol{r},t)\exp{-i\omega_0 t}+P_{NL}^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}).
                 \end{split}
                 \end{equation}
                 Neglecting freq mismatch terms, we get
@@ -767,7 +768,7 @@
                     \epsilon_{NL}=&\frac{3}{4}{{\chi^{(3)}}_x}^{xxx}\abs{E(\boldsymbol{r},t)}^2\label{Nonlinear epsilon relation with chi3 and E}
                 \end{align}
                 \end{subequations}
-            \item Take negative freq terms of \autoref{fast oscillation separation} into \autoref{basis of pulse propagation function: maxwell equation} (notice time derivative to $\exp{-i\omega_0 t}$), we can get (the following omits $(\boldsymbol{r},t)$ in \autoref{fast oscillation separation} for simplicity)
+            \item \MakeUppercase{(This bullet is the derivation of }\autoref{Helmholtz equation in frequency domain}, \MakeUppercase{and some simplifications used.} \autoref{Helmholtz equation in frequency domain} is different from \autoref{Propagation E equation in freq domain} because they are respectively slow and fast term equations, in \autoref{fast oscillation separation: E}.)\\Take negative freq terms of \autoref{fast oscillation separation} into \autoref{basis of pulse propagation function: maxwell equation} (notice time derivative to $\exp{-i\omega_0 t}$), we can get (the following omits $(\boldsymbol{r},t)$ in \autoref{fast oscillation separation} for simplicity)
                 \begin{equation}
                 \begin{split}
                     &\exp{-i\omega_0 t}[\Lap^2 E-\epsilon_0 \mu_0(\pdv[2]{E}{t}-2i\omega_0\pdv{E}{t}-\omega_0^2 E)]\\
@@ -775,75 +776,186 @@
                 \end{split}
                 \label{slow oscillatiing term propagation equation derive in section 2.3.1}
                 \end{equation}
-                If we assume (D in \autoref{D define in section 2.3.1} is the same in \autoref{fast oscillation separation: D})
-                \begin{subequations}
-                \begin{align}
-                    &2i\omega_0\pdv{D}{t}+\omega_0^2 D=0,\\
-                    where: & D = \epsilon_0 E +P_L+P_{NL}\label{D define in section 2.3.1}.
-                \end{align}
-                \end{subequations}
-                Then we can get propagation equation of slow oscillating term in \autoref{fast oscillation separation} by taking \autoref{D define in section 2.3.1} into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}:
+                
+            % \item \MakeUppercase{(This bullet is the derivation of }\autoref{Helmholtz equation in frequency domain}, \MakeUppercase{and some simplifications used.)}\\Then we try to write slow oscillating term into freq domain:\\
+            %     First we do some approximation to \autoref{slow oscillating E term equation in time domain}, which physical meaning are more clear and discussable in freq domain:
+            %     We Assume 
+           
+            %     Then \autoref{slow oscillating E term equation in time domain} is simplified to:
+            %     \begin{equation}
+            %         \Lap^2E-\frac{1}{c^2}\pdv[2]{E}{t}=\mu_0({{\chi^{(1)}}_x}^x+\epsilon_{NL})\pdv[2]{E}{t}
+            %         \label{simplified slow oscillating E term equation in time domain}
+            %     \end{equation}
+                Here are some relations that we will use to simplify \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}:
+                    \SubItem{
+                    Fourier transforms:
+                    \begin{subequations}
+                    \begin{align}
+                        &\Tilde{E}(\boldsymbol{r},\omega-\omega_0)=\int_{-\infty}^{\infty}E(\boldsymbol{r},t)\exp{i(\omega-\omega_0)t}dt, \label{fourier transform of slow oscillating term of E}\\
+                        &E(\boldsymbol{r},t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{E}(\boldsymbol{r},\omega-\omega_0)\exp{-i(\omega-\omega_0)t}d\omega, \label{inverse fourier transform of slow oscillating term of E}\\
+                        &\Tilde{P}_L(\boldsymbol{r},\omega-\omega_0)=\int_{-\infty}^{\infty}P_L(\boldsymbol{r},t)\exp{i(\omega-\omega_0)t}dt, \label{fourier transform of slow oscillating term of PL}\\
+                        &P_L(\boldsymbol{r},t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{P}_L(\boldsymbol{r},\omega-\omega_0)\exp{-i(\omega-\omega_0)t}d\omega. \label{inverse fourier transform of slow oscillating term of PL}\\
+                        &\Tilde{P}_{NL}(\boldsymbol{r},\omega-\omega_0)=\int_{-\infty}^{\infty}P_{NL}(\boldsymbol{r},t)\exp{i(\omega-\omega_0)t}dt, \label{fourier transform of slow oscillating term of PNL}\\
+                        &P_{NL}(\boldsymbol{r},t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{P}_{NL}(\boldsymbol{r},\omega-\omega_0)\exp{-i(\omega-\omega_0)t}d\omega. \label{inverse fourier transform of slow oscillating term of PNL}
+                    \end{align}
+                    \end{subequations}
+                    }
+                    \SubItem{
+                    And a relation based on neglecting Raman term of nuclei:
+                    \begin{equation}
+                        %P_L(\boldsymbol{r},t) &= \epsilon_0 {{\chi^{(1)}}_x}^x E(\boldsymbol{r},t)\\
+                        P_{NL}(\boldsymbol{r},t)= \epsilon_0 \epsilon_{NL}(\boldsymbol{r},t) E(\boldsymbol{r},t).
+                    \label{simplificaiton used in section 2.3.1 to get helmholtz equation}
+                    \end{equation}
+                    Reminder: 
+                    \begin{itemize}
+                        \item $\epsilon_{NL}$ in \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation} is actually time dependent based on \autoref{Nonlinear epsilon relation with chi3 and E}. However ${{\chi^{(3)}}_x}^{xxx}$ is NOT time dependent here based on the simplification from \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL with EEE relation}.
+                        \item This simplification only neglected the Raman term from nuclei. The Raman term from electrons are also neglected in \autoref{Helmholtz equation in frequency domain}, HOWEVER NOT YET. 
+                    \end{itemize}
+                    }
+                    
+                    
+                Now come back to simplify \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}. First put \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation} into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}, we get
                 \begin{equation}
-                    \Lap^2E-\frac{1}{c^2}\pdv[2]{E}{t}=\mu_0\pdv[2]{(P_L+P_{NL})}{t}.
-                    \label{slow oscillating E term equation in time domain}
+                \begin{split}
+                    &[\Lap^2 E-\epsilon_0 \mu_0(\pdv[2]{E}{t}-2i\omega_0\pdv{E}{t}-\omega_0^2 E)]\\
+                    =&\mu_0[\pdv[2]{(P_L+\epsilon_0 \epsilon_{NL} E)}{t}-2i\omega_0\pdv{(P_L+\epsilon_0 \epsilon_{NL} E)}{t}-\omega_0^2(P_L+\epsilon_0 \epsilon_{NL} E)].
+                \end{split}
+                \label{slow oscillatiing term propagation equation derive in section 2.3.1-part 2}
                 \end{equation}
-            \item Then we try to write slow oscillating term into freq domain:\\
-                First we do some approximation to \autoref{slow oscillating E term equation in time domain}, which physical meaning are more clear and discussable in freq domain:
-                We Assume 
-                \begin{subequations}
-                \begin{align}
-                    P_L(\boldsymbol{r},t) &= \epsilon_0 {{\chi^{(1)}}_x}^x E(\boldsymbol{r},t)\\
-                    P_{NL}(\boldsymbol{r},t)&= \epsilon_{NL} E(\boldsymbol{r},t)
-                \end{align}
-                \label{simplificaiton used in section 2.3.1 to get helmholtz equation}
-                \end{subequations}
-                Then \autoref{slow oscillating E term equation in time domain} is simplified to:
+                Now neglect time derivative terms of $\epsilon_{NL}$:
                 \begin{equation}
-                    \Lap^2E-\frac{1}{c^2}\pdv[2]{E}{t}=\mu_0({{\chi^{(1)}}_x}^x+\epsilon_{NL})\pdv[2]{E}{t}
-                    \label{simplified slow oscillating E term equation in time domain}
+                \begin{split}
+                    &[\Lap^2 E-\epsilon_0 \mu_0(\pdv[2]{E}{t}-2i\omega_0\pdv{E}{t}-\omega_0^2 E)]\\
+                    =&\mu_0[\pdv[2]{P_L}{t}-2i\omega_0\pdv{P_L}{t}-\omega_0^2P_L]+\mu_0\epsilon_0\epsilon_{NL}[\pdv[2]{E}{t}-2i\omega_0\pdv{E}{t}-\omega_0^2 E].
+                \end{split}
+                \label{slow oscillatiing term propagation equation derive in section 2.3.1-part 3}
                 \end{equation}
-                Do a Fourier transform:
+                
+                
+                Then put \autoref{inverse fourier transform of slow oscillating term of E} and \autoref{inverse fourier transform of slow oscillating term of PL} into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 3}, \\
+                Note in detail that some terms are cancelled:
                 \begin{equation}
-                    \Tilde{E}(\boldsymbol{r},\omega-\omega_0)=\int_{-\infty}^{\infty}E(\boldsymbol{r},t)\exp{i(\omega-\omega_0)t}dt,
-                    \label{fourier transform of slow oscillating term of E}
+                \begin{split}
+                    &\pdv[2]{E}{t}-2i\omega_0\pdv{E}{t}-\omega_0^2 E\\
+                    =&\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{E}(\boldsymbol{r},\omega-\omega_0)[(-i(\omega-\omega_0))^2-2i\omega_0(-i(\omega-\omega_0))-\omega_0^2]\exp{-i(\omega-\omega_0)t}d\omega\\
+                    =&\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{E}(\boldsymbol{r},\omega-\omega_0)[-\omega^2]\exp{-i(\omega-\omega_0)t}d\omega
+                \end{split}
+                \label{slow oscillatiing term propagation equation derive in section 2.3.1-part 4}
                 \end{equation}
-                Then we get Helmholtz equation
+                we get
                 \begin{equation}
-                    \Lap^2\Tilde{E}+\epsilon(\omega)k_0^2\Tilde{E}=0,
+                    \Lap^2\Tilde{E}+k^2\Tilde{E}=-\mu_0 \omega^2 \Tilde{P}_L- \epsilon_{NL}k^2\Tilde{E},
+                    \label{slow oscillatiing term propagation equation derive in section 2.3.1-part 5}
                 \end{equation}
                 where
                 \begin{equation}
-                    \epsilon(\omega)=1+{{\chi^{(1)}}_x}^x(\omega)+\epsilon_{NL}.
+                    k=\frac{\omega}{c}.
                 \end{equation}
-                Now we need to discuss the physical meaning of \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation}. From \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation} to \autoref{simplified slow oscillating E term equation in time domain}, we actually assumed the derivative of ${{\chi^{(1)}}_x}^x$ (\autoref{P not instantly response to E, with dispersion: linear part}) and $\epsilon_{NL}$ (\autoref{Nonlinear epsilon relation with chi3 and E}) to t is small. However from the contents and conclusions of \autoref{P not instantly response to E, with dispersion}, we know this approximation actually has some impact in frequency domain.
-                    \SubItem{The impact of simplificating ${{\chi^{(1)}}_x}^x$ from \autoref{P not instantly response to E, with dispersion: linear part} is kind of complicated.
-                        \begin{equation}
-                        \begin{split}
-                            \pdv[2]{P_L}{t}=&\epsilon_0\pdv[2]{\int_{-\infty}^t \chi^{(1)}(t-t^{'})\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})dt^{'}}{t}\\
-                            =&???\\
-                            =&{omitted terms}+\epsilon_0{{\chi^{(1)}}_x}^x \pdv[2]{E(\boldsymbol{r},t)}{t}.
-                        \end{split}
-                        \end{equation}
-                    }
-                    \SubItem{The impact of $\epsilon_{NL}$ can be derived from \autoref{Nonlinear epsilon relation with chi3 and E}. To write out terms we neglected from \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation} to \autoref{simplified slow oscillating E term equation in time domain}, we write this derive in detail:
+                Then put \autoref{PL not instantly response to E: freq domain} into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 5}, (These two equations are both in freq domain, and \autoref{PL not instantly response to E: freq domain} are actually precise without any assumption of instant response)\\
+                We get Helmholtz equation
+                \begin{equation}
+                    \Lap^2\Tilde{E}+\epsilon(\omega)k^2\Tilde{E}=0,
+                    \label{Helmholtz equation in frequency domain}
+                \end{equation}
+                where
+                \begin{equation}
+                    \epsilon(\omega)=1+{{\chi^{(1)}}_x}^x(\omega)+\epsilon_{NL}
+                    \label{epsilon omega relation to chi1 and epsilon nl}
+                \end{equation}
+                
+                
+                Now we need to discuss the physics meaning from \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 2} to \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 3}. From \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 2} to \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 3}, we actually assumed the time derivative of $\epsilon_{NL}$ (\autoref{Nonlinear epsilon relation with chi3 and E}) is small. From the contents and conclusions of \autoref{P not instantly response to E, with dispersion}, we know this approximation actually has some impact in frequency domain. That's why in \autoref{epsilon omega relation to chi1 and epsilon nl} $\epsilon_{NL}$ term was not indicated as $\epsilon_{NL}(\omega)$.
+                %     \SubItem{The impact of simplificating ${{\chi^{(1)}}_x}^x$ from \autoref{P not instantly response to E, with dispersion: linear part} is kind of complicated.
+                %         \begin{equation}
+                %         \begin{split}
+                %             \pdv[2]{P_L}{t}=&\epsilon_0\pdv[2]{\int_{-\infty}^t \chi^{(1)}(t-t^{'})\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})dt^{'}}{t}\\
+                %             =&???(intentionally Left Blank)\\
+                %             =&{omitted Terms}+\epsilon_0{{\chi^{(1)}}_x}^x \pdv[2]{E(\boldsymbol{r},t)}{t}.
+                %         \end{split}
+                %         \end{equation}
+                %     }
+                    \SubItem{The impact of $\epsilon_{NL}$ can be derived from \autoref{Nonlinear epsilon relation with chi3 and E}. To write out terms we neglected from \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 2} to \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 3}, we write this derive in detail:
                         \begin{equation}
                         \begin{split}
                             \pdv[2]{P_{NL}}{t}=&\pdv[2]{\epsilon_0\epsilon_{NL}(\boldsymbol{r},t)E(\boldsymbol{r},t)}{t}\\
                             =&\epsilon_0[\epsilon_{NL}\pdv[2]{E(\boldsymbol{r},t)}{t}+2\pdv{\epsilon_{NL}(\boldsymbol{r},t)}{t}\pdv{E(\boldsymbol{r},t)}{t}+E(\boldsymbol{r},t)\pdv[2]{\epsilon_{NL}(\boldsymbol{r},t)}{t}]\\
                             =&\epsilon_0[\epsilon_{NL}\pdv[2]{E}{t}+\frac{3}{2}{{\chi^{(3)}}_x}^{xxx}\pdv{\abs{E}^2}{t}\pdv{E}{t}+E\frac{3}{4}{{\chi^{(3)}}_x}^{xxx}\pdv[2]{\abs{E}^2}{t}].
                         \end{split}
+                        \label{electron raman term due to epsilon NL time dependance}
                         \end{equation}
-                        And the terms we negelcted is
-                        \begin{equation*}
-                            \frac{3}{2}{{\chi^{(3)}}_x}^{xxx}\pdv{\abs{E}^2}{t}\pdv{E}{t}+E\frac{3}{4}{{\chi^{(3)}}_x}^{xxx}\pdv[2]{\abs{E}^2}{t}
-                        \end{equation*}
+                        And the terms we neglected is the second and third term in \autoref{electron raman term due to epsilon NL time dependance}:
+                        \begin{equation}
+                            \frac{3}{2}{{\chi^{(3)}}_x}^{xxx}\pdv{\abs{E}^2}{t}\pdv{E}{t}+E\frac{3}{4}{{\chi^{(3)}}_x}^{xxx}\pdv[2]{\abs{E}^2}{t}.
+                        \end{equation}
+                        These are actually electron Raman terms. Refer to the reminder below \autoref{simplificaiton used in section 2.3.1 to get helmholtz equation}, we actually included no Raman at all in \autoref{Helmholtz equation in frequency domain}. HOWEVER the electron and nuclei Raman terms are neglected at different steps.\\ \\ Later we will discuss more about Raman term. The reason why electron Raman term is not important is based on the assumption that:
+                        \begin{equation}
+                            \pdv[2]{E}{t} \ll \omega_0 \pdv{E}{t}.
+                            \label{slow oscillating term second order derivative is much smaller than first order}
+                        \end{equation}
+                        Thus second order derivative is much smaller than first order. \\
+                        This is consistent with \autoref{fast oscillation separation: E}, in which we already assumed E                        is slow oscillating term and $\Delta \omega \ll \omega_0$. We will come back to this assumption when we discuss Raman term later.
                     }
+            \item \MakeUppercase{This bullet is to clarify some common misconstrue of} \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}.\\ The slow oscillating term and quick oscillating term in \autoref{fast oscillation separation: E} satisfy different equations.
+            Only if we assume (Here D is the same in \autoref{fast oscillation separation: D})
+                \begin{subequations}
+                \begin{align*}
+                    &2i\omega_0\pdv{D}{t}+\omega_0^2 D=0,\\
+                    where: & D = \epsilon_0 E +P_L+P_{NL},
+                \end{align*}
+                \label{D approximation in section 2.3.1}
+                \end{subequations}
+                \MakeUppercase{which is apparently wrong,} can we get propagation equation of slow oscillating term in \autoref{fast oscillation separation} satisfies a similar form of fast oscillating term.\\ By taking the above D relation into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1}, we get slow oscillating term equation which is similar to fast term:
+                \begin{equation*}
+                    \Lap^2E-\frac{1}{c^2}\pdv[2]{E}{t}=\mu_0\pdv[2]{(P_L+P_{NL})}{t}.
+                \end{equation*}
+                \MakeUppercase{However this is also wrong!}
+            \item Similar to \autoref{relation between epsilon, n and alpha}, here both $n$ and $\alpha$ is intensity dependent because of $\epsilon_{NL}$ in \autoref{epsilon omega relation to chi1 and epsilon nl}. It is customary to introduce
+            \begin{subequations}
+                \begin{align}
+                    \Tilde{n}&=n+\Bar{n}_2\abs{E}^2,\label{tilde n and n n2 relation}\\
+                    \Tilde{\alpha}&=\alpha+\alpha_2\abs{E}^2\label{tilde alpha and alpha alpha2 relation}.
+                \end{align}
+            \end{subequations}
+            And \autoref{relation between epsilon, n and alpha} becomes
+            \begin{equation}
+                \epsilon(\omega, \abs{E}^2) = (\Tilde{n}+\frac{i\Tilde{\alpha}}{2k})^2.
+                \label{relation between tilde epsilon, tilde n and tilde alpha}
+            \end{equation}
+            The nonlinear-index coefficient $\Bar{n}_2$ and the two-photon absorption coefficient $\alpha_2$ are given by
+            \begin{subequations}
+                \begin{align}
+                    \Bar{n}_2&=\frac{3}{8n}\Re{\chiThree},\label{nonlinear-index coefficient bar n2 relation to chi3}\\
+                    \alpha_2&=\frac{3\omega_0}{4nc}\Im{\chiThree} \label{two-photon absorption coefficient alpha2 relation to chi3}.
+                \end{align}
+            \end{subequations}
+            
+            \item Solving \autoref{Helmholtz equation in frequency domain}:\\
+            variable seperation:
+            \begin{equation}
+                \Tilde{E}(\boldsymbol{r},\omega-\omega_0)=F(x,y)\Tilde{A}(z,\omega-\omega_0)\exp{i\beta_0 z}.
+            \end{equation}
+            Notice $\Tilde{A}(z,\omega-\omega_0)$ is slow varying function of z. 
+            
+            
+            
+            
         \end{itemize}
             
             
             
 \newpage
 \section{Group-Velocity Dispersion}
+
+
+
+
+
+
+
+
+
+
 % \subsubsection{effective red and blue detune}
 
 
