@@ -60,6 +60,7 @@
 \newcommand{\Disp}{\displaystyle}
 \newcommand{\qe}{\hfill\(\bigtriangledown\)}
 
+
 \newcommand{\SubItem}[1]{
     {\setlength\itemindent{15pt} \item[-] #1}
 }
@@ -208,6 +209,7 @@
                         \beta_m = (\dv[m]{\beta}{\omega})_{\omega=\omega_0}.
                         \label{betam definition}
                     \end{equation}
+                    (You can treat \autoref{propagation constant expansion} as precise currently, which we will discuss later precisely at \autoref{beta omega expands around omega 0}.)\\
                     And $n_g$ are related to $\beta_1$ by:
                     \begin{equation}
                         \beta_1 = \frac{1}{v_g} = \frac{n_g}{c} = \frac{1}{c}(n+\omega \dv{n}{\omega}).
@@ -219,7 +221,7 @@
                         \beta_2 = \dv{\beta_1}{\omega} = \frac{1}{c}\dv{n_g}{\omega} = \frac{1}{c}(2\dv{n}{\omega} +\dv[2]{n}{\omega}).
                         \label{beta2 definition}
                     \end{equation}
-                    
+                    In standard silica fibers, $\beta_2\approx50ps^2/km$ in visible region, but becomes close to $-20ps^2/km$ near $1.5\mu m$. Change of the sign occurs around $1.3\mu m$.
                 \item GVD parameter D: Defined by $\dv{\beta_1}{\lambda}$. Related to $\beta_2$ by:
                     \begin{equation}
                         D = \dv{\beta_1}{\lambda} = -\frac{2\pi c}{\lambda^2}\beta_2 = -\frac{\lambda}{c}\dv[2]{n}{\lambda}
@@ -314,7 +316,15 @@
                     \end{equation}
                     $D_p$ is PMD(Polarization-Mode Dispersion) parameter. L is travel distance.
                     
-                \item polarization-maintaining fibers: induces LARGE amount of birefringence so that the FLUCTUATIONS do not significantly affect polarization.---> Which means polarization maintaining fibers can only maintain the polarization along fast or slow axis well.
+                \item polarization-maintaining fibers: induces LARGE amount of birefringence so that the FLUCTUATIONS do not significantly affect polarization.---> Which means polarization maintaining fibers can only maintain the polarization along fast or slow axis well. These fibers always called "PM fibers" or "D fibers" due to its cladding shape(See \autoref{fig1.8} inset).
+                    \begin{figure}[htbp]
+                        \centering
+                        \includegraphics[width=0.6\textwidth]{images/fig1.8.PNG}
+                        \caption{Variation of birefringence parameter $B_m$(See \autoref{polarization birefringence definition}) with thickness d of the stress-inducing
+                        element for four different polarization-maintaining fibers. Different shapes of the
+                        stress-applying elements (shaded region) are shown in the inset.}
+                        \label{fig1.8}
+                    \end{figure}
             \end{itemize}
             
     \subsection{Fiber Nonlinearities}
@@ -335,7 +345,7 @@
                     \end{equation}
                     The high order terms in \autoref{general PE relation} are not related with \autoref{sellmeier equation} since they are nonlinear terms. \autoref{sellmeier equation} don't show the power dependence of refractive index.
                 }
-                \SubItem{In general, $\chi^{(j)}$ is a (j,1)-tensor\cite{noauthor_tensor_2019} of rank j+1. The reason it is (j,1)-tensor is that this is a "mapping" coefficient taking in j-copies of 3-dim Cartesian space(i.e.$\boldsymbol{EE\dots}$) into a 1-cpoy of 3-dim Cartesian space(i.e. $\boldsymbol{P}$).}
+                \SubItem{In general, $\chi^{(j)}$ is a (j,1)-tensor\cite{noauthor_tensor_2019} of rank j+1. The reason it is (j,1)-tensor is that this is a "mapping" coefficient taking in j-copies of 3-dim Cartesian space(i.e.$\boldsymbol{EE\dots}$) into a 1-cpoy of 3-dim Cartesian space(i.e. $\boldsymbol{P}$). (It might be useful to refer to \autoref{fig: chi1 and chi3 freq domain illustration} to understand better.)}
                 \SubItem{ Rank 4 tensor is a good example to illustrate the difference between convariant and contravariant indexes. Any tensor is a (p,q)-tensor with rank of p+q, where p is contravariant index, denoted as the uppper index; q is covariant index, denoted as lower index.
                     \begin{itemize}
                         \item For rank-4 tensors, typically have two types: type (3,1), such as 3rd order susceptibility $\chi^{(3)}$; and type (2,2), such as elasticity tensor\cite{noauthor_hookes_2019}.
@@ -432,15 +442,15 @@
                 \begin{equation}
                     \boldsymbol{P}^{(3)} = \epsilon_0 \chi^{(3)} \vdots \boldsymbol{EEE},
                 \end{equation}
-                which can be generally understood to be in direct ratio to cubed E, $\abs{\boldsymbol{E}}^3$. From \autoref{two mode optical field}, $\abs{\boldsymbol{E}}^3$ can be expressed as
+                which can be generally understood to be proportional to cubed E, $\abs{\boldsymbol{E}}^3$. From \autoref{two mode optical field}, $\abs{\boldsymbol{E}}^3$ can be expressed as
                 \begin{equation}
                     \begin{split}
-                        \abs{\boldsymbol{E}}^3 &= \frac{1}{8}(E_1\exp{-i\omega_1 t} + E_2\exp{-i\omega_2 t} + E_1^*\exp{i\omega_1 t} + E_2^*\exp{i\omega_2 t})^3\\&
-                        =\frac{1}{8} [E_1\exp{-i\omega_1t}(3\abs{E_1}^2+6\abs{E_2}^2) + \dots].
+                        \abs{\boldsymbol{E}}^3 =& \frac{1}{8}(E_1\exp{-i\omega_1 t} + E_2\exp{-i\omega_2 t} + E_1^*\exp{i\omega_1 t} + E_2^*\exp{i\omega_2 t})^3\\
+                        =&\frac{1}{8} [E_1\exp{-i\omega_1t}(3\abs{E_1}^2+6\abs{E_2}^2) +E_2\exp{-i\omega_2t}(3\abs{E_2}^2+6\abs{E_1}^2) \\ & +\dots].
                     \end{split}
                     \label{cube of two mode optical field}
                 \end{equation}
-                Only freq components at $\exp{-i\omega_1t}$ is on resonance with the optical field, and contributes to XPM refractive index. From \autoref{cube of two mode optical field} we have a rough derivation of where does the twice in \autoref{cross phase modulation NL phase shift} comes from. However more detailed derivation (including \autoref{n2 bar relation with chi3}) should originate from Maxwell equation and wave propagation equation, which will be included in the next chapter.
+                Only freq components at $\exp{-i\omega_1t}$ and $\exp{-i\omega_2t}$ is on resonance with the optical field, and contributes to XPM refractive index. From \autoref{cube of two mode optical field} we have a rough derivation of where does the twice in \autoref{cross phase modulation NL phase shift} comes from. However more detailed derivation (including \autoref{n2 bar relation with chi3}) should originate from Maxwell equation and wave propagation equation, which will be included in the following chapter.
             \end{itemize}
         \subsubsection{Stimulated Inelastic Scattering}
             \begin{itemize}
@@ -726,10 +736,49 @@
                 \autoref{P not instantly response to E, with dispersion} is the general expression when \autoref{no dispersion chi: time domain} and \autoref{no dispersion chi: freq domain} don't satisfies. Also to notice that $\chi$ \MakeUppercase{with dispersion means in time domain} $\chi$ \MakeUppercase{has delay in t}. \\The \autoref{P not instantly response to E, with dispersion} is actually a form of convolution. Using the fourier transform properties in convoultion, we can get a form of \autoref{P not instantly response to E, with dispersion} which is more important:
                 \begin{subequations}
                 \begin{align}
-                    &\Tilde{\boldsymbol{P}_L}(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\label{PL not instantly response to E: freq domain}\\
-                    &\Tilde{\boldsymbol{P}_{NL}}(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)\label{PNL not instantly response to EEE: freq domain}
+                    &\Tilde{\boldsymbol{P}}_L(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\label{PL not instantly response to E: freq domain}\\
+                    &\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega_1+\omega_2+\omega_3)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)\label{PNL not instantly response to EEE: freq domain}
                 \end{align}
                 \end{subequations}
+                It is useful to deeply understand the action of $\chi^{(1)}$ and $\chi^{(3)}$ now. As \autoref{fig: chi1 and chi3 freq domain illustration} shows, although $\chi^{(1)}$ is frequency dependent, it can never produce P response frequency other than input Electric field frequency. In the circumstance here only $\chi^{(3)}$ can produce response other than Electric field frequency. Also interesting to notice that photonic energy conservation:
+                \begin{equation}
+                    \hbar \omega = \hbar \omega_1 +\hbar \omega_2+\hbar \omega_3
+                    \label{photonic energy conservation: four wave expression}
+                \end{equation}
+                is automatically satisfied in the Fourier transformation from \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL not instantly response to EEE: freq domain}. Practically in future these frequency can either be positive frequency or negative frequency. If two of $\omega_1$, $\omega_2$ and $\omega_3$ are opposite to each other(e.g:$\omega_1+\omega_2=0$), then this is a good model to Raman process. (which is proportional to light intensity)
+                \begin{subequations}
+                \begin{align}
+                    &\boldsymbol{\Tilde{E}}(\omega_1)\boldsymbol{\Tilde{E}}(-\omega_1)=\abs{\boldsymbol{\Tilde{E}}(\omega_1)}^2\\
+                    &\Tilde{\boldsymbol{P}}_{NL,Raman}(\omega_3)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\omega_1)\boldsymbol{\Tilde{E}}(-\omega_1)\boldsymbol{\Tilde{E}}(\omega_3) \propto \abs{\boldsymbol{\Tilde{E}}(\omega_1)}^2
+                \end{align}
+                    
+                \end{subequations}
+                
+                \begin{figure}[htbp]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{images/chi1_and_chi3_in_freq_domian.jpg}
+                    \caption{Illustration of different functions of $\chi^{(1)}$ and $\chi^{(3)}$. Notice that $\chi^{(1)}$ can never produce P response other than input frequency. Also energy conservation is automatically satisfied in the Fourier transform from \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL not instantly response to EEE: freq domain}.}
+                    \label{fig: chi1 and chi3 freq domain illustration}
+                \end{figure}
+                
+                The negative and positive frequency term is actually a phase difference. Classically these two Optical fields:
+                \begin{subequations}
+                \begin{align}
+                    E_1 &= \sin{\omega t}\\
+                    E_2 &= -\sin{\omega t} = \sin{-\omega t}
+                \end{align}
+                \end{subequations}
+                
+                can be interpreted as having opposite sign of frequency. In classical opinion this can be interpreted as two optical fields cancels each other. In Quantum optics opposite frequency can be interpreted as
+                \begin{subequations}
+                \begin{align}
+                    \hat{a}^\dag &= \hat{E}\exp{-i\omega t}\\
+                    \hat{a} &= \hat{E}\exp{i\omega t},
+                \end{align}
+                \end{subequations}
+                which means generation and annihilation of photons.
+                
+                
             \item Quick evolving term and slow evolving terms separation:\\
                 Optical field is assumed to maintain its polarization along the fiber length (which is not the case, but works well). Also optical field is assumed to be quasi-monochromatic, i.e., the pulse spectrum, centered at ω0, is assumed to have a spectral width $\Delta \omega$ such that $\Delta \omega/\omega_0 \ll 1$. Since $\omega_0\approx10^{-15}s^{-1}$, the last assumption is valid for pulses as short as 0.1 ps.
                 \begin{subequations}
@@ -741,7 +790,12 @@
                         \boldsymbol{D}(\boldsymbol{r},t)&=\frac{1}{2}\hat{\boldsymbol{x}}(D(\boldsymbol{r},t)\exp{-i\omega_0 t}+D^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}),\label{fast oscillation separation: D}
                     \end{align}
                 \end{subequations}
-            \item Considerable simplification occurs if the nonlinear response is assumed to be instantaneous, Thus
+            \item Considerable simplification occurs if the nonlinear response is assumed to be instantaneous,
+            \begin{equation}
+                \chi^{(3)}(\omega_1,\omega_2,\omega_3)\longrightarrow\chi^{(3)}(\omega)=\chi^{(3)}(\omega,-\omega,\omega)=const,
+                \label{chi3 has no dispersion, instantaneous response}
+            \end{equation}
+            which means $\chi^{(3)}$ has no dispersion. Thus
                 \begin{equation}
                     \label{PNL with EEE relation}
                     \boldsymbol{P}_{NL}(\boldsymbol{r}) = \epsilon_0 \chi^{(3)} \vdots \boldsymbol{EEE}
@@ -934,20 +988,198 @@
             variable seperation:
             \begin{equation}
                 \Tilde{E}(\boldsymbol{r},\omega-\omega_0)=F(x,y)\Tilde{A}(z,\omega-\omega_0)\exp{i\beta_0 z}.
+                \label{tilde E seperate to F, A and exp(ibeta z)}
             \end{equation}
-            Notice $\Tilde{A}(z,\omega-\omega_0)$ is slow varying function of z. 
+            $F(x,y)$ has the unit of length, $\Tilde{A}(z,\omega-\omega_0)$ has the umit of $V/m$. Notice $\Tilde{A}(z,\omega-\omega_0)$ is slow varying function of z. 
+            \begin{subequations}
+            \begin{align}
+                \pdv[2]{F}{x}+\pdv[2]{F}{x}+[\epsilon(\omega)k^2-\Tilde{\beta}^2]F &= 0 \label{dynamic equation of F: mode on cross section}\\
+                2i\beta\pdv{\Tilde{A}}{z}+(\Tilde{\beta}^2-\beta_0^2)\Tilde{A}&=0 \label{dynamic equation of A, freq domain: slow oscillating term}.
+            \end{align}
+            \end{subequations}
+            Notice \autoref{dynamic equation of A, freq domain: slow oscillating term} neglected second derivative $\pdv[2]{\Tilde{A}}{z}$, as $\Tilde{A}$ is slow varying term.\\
+            \SubItem{\textbf{Step 1: Separate Orders}\\
+                $\epsilon(\omega)$ in \autoref{dynamic equation of F: mode on cross section} is the same as \autoref{epsilon omega relation to chi1 and epsilon nl}, which can be approximated by (use \autoref{tilde n and n n2 relation} and \autoref{relation between tilde epsilon, tilde n and tilde alpha}):
+                \begin{equation}
+                \begin{split}
+                    \epsilon(\omega, \abs{E}^2) &= (\Tilde{n}+\frac{i\Tilde{\alpha}}{2k_0})^2\\
+                    &=(n(\omega)+\Bar{n}_2\abs{E}^2+\frac{i\Tilde{\alpha}}{2k_0})^2\\
+                    &=(n(\omega)+\Delta n)^2 \approx n^2+2n\Delta n,
+                \end{split}
+                \end{equation}
+                where (note n is not intensity dependent)
+                \begin{equation}
+                    \Delta n(\omega, \abs{E}^2) = \Bar{n}_2\abs{E}^2+\frac{i\Tilde{\alpha}(\omega, \abs{E}^2)}{2k_0}.
+                    \label{Delta n relation with abs E and alpha}
+                \end{equation}
+            }
+            \SubItem{\textbf{Step 2: First order solution}\\
+                Treat $\Delta n$ as a perturbation. First replace $\epsilon$ as $n^2$, get $F(x,y)$ from \autoref{dynamic equation of F: mode on cross section} and corresponding wave number $\beta(\omega)$. This solution is useful to expand around the carrier freq $\omega_0$ as:
+                \begin{equation}
+                    \beta(\omega) = \beta_0 + (\omega-\omega_0)\beta_1 + \frac{1}{2}(\omega-\omega_0)^2\beta_2 + \frac{1}{6}(\omega-\omega_0)^3\beta_3 + \dots,
+                    \label{beta omega expands around omega 0}
+                \end{equation}
+                where
+                \begin{equation}
+                    \beta_m = (\dv[m]{\beta}{\omega})_{\omega=\omega_0}     (m=1,2,\dots).
+                    \label{beta m expression as beta derivative}
+                \end{equation}
+                (Refer \autoref{group velocity and group index} and \autoref{beta2 definition} to recall their physical relation to group velocity and GVD.)\\
+                And it is notable that $\beta(\omega_0)=\beta_0$ which is the same $\beta_0$ in \autoref{dynamic equation of A, freq domain: slow oscillating term}. Although this process is precisely analytical, the simple intuitive physical meaning of $\beta$ is wave number also works. The approximation:
+                \begin{equation}
+                    \beta(\omega) \approx n(\omega)\frac{\omega}{c}
+                    \label{beta omega relation approx to n omega / c}
+                \end{equation}
+                may not be precise, but still correct.(Refer \autoref{propagation constant expansion} actually contains approximation.)
+            }
+            \SubItem{\textbf{Step 3: High order correction to wave number}\\
+                Then include $\Delta n$. \MakeUppercase{In first order perturbation theory, } $\Delta n$ \MakeUppercase{does not affect }$F(x,y)$, \MakeUppercase{ however can affect wave number as:}
+                \begin{equation}
+                    \Tilde{\beta}(\omega) = \beta(\omega) + \Delta \beta(\omega),
+                    \label{tilde beta and delta beta relation}
+                \end{equation}
+                where
+                \begin{equation}
+                    \Delta \beta(\omega) = \frac{\omega^2 n(\omega)}{c^2 \beta(\omega)} \frac{\iint _{-\infty}^\infty \Delta n(\omega) \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}}.
+                    \label{delta beta intergral relation with F(x,y)}
+                \end{equation}
+                Similiary expand $\Delta \beta$ around $\omega_0$, we get
+                \begin{equation}
+                    \Delta \beta(\omega) = \Delta \beta_0 + (\omega-\omega_0)\Delta \beta_1 + \frac{1}{2}(\omega-\omega_0)^2\Delta \beta_2 + \frac{1}{6}(\omega-\omega_0)^3\Delta \beta_3 + \dots,
+                    \label{Delta beta omega expands around omega 0}
+                \end{equation}
+                where
+                \begin{equation}
+                    \Delta \beta_m = (\dv[m]{\Delta \beta}{\omega})_{\omega=\omega_0}     (m=1,2,\dots).
+                    \label{Delta beta m expression as Delta beta derivative}
+                \end{equation}
+            }
             
+            Recall that from \autoref{fast oscillation separation: E} and \autoref{tilde E seperate to F, A and exp(ibeta z)}, electric field can be written as:
+            \begin{equation}
+                \boldsymbol{E}(\boldsymbol{r},t)=\frac{1}{2}\boldsymbol{\hat{x}}[F(x,y)A(z,t)\exp{i(\beta_0 z-\omega_0 t)}+c.c].
+            \end{equation}
             
+            \SubItem{\textbf{Step 4: Get Pulse Propagation Equation}\\
+            Neglect high order small magnitude, approximate $\Tilde{\beta}^2-\beta_0^2$ by $2\beta_0(\Tilde{\beta}-\beta_0)$, \autoref{dynamic equation of A, freq domain: slow oscillating term} can be written as:
+            \begin{equation}
+                \pdv{\Tilde{A}}{z}=i[\beta(\omega)+\Delta \beta(\omega)-\beta_0]\Tilde{A}.
+            \end{equation}
+            Take Fourier transform as
+            \begin{equation}
+                A(z,t)=\frac{1}{2\pi}\int_{-\infty}^\infty\Tilde{A}(z,\omega-\omega_0)\exp{-i(\omega-\omega_0)t}d\omega.
+                \label{Fourier transform from tilde A to A}
+            \end{equation}
+            The resulting equation of $A(z,t)$ becomes
+            \begin{equation}
+                \pdv{A}{z}+\beta_1\pdv{A}{t}+\frac{i\beta_2}{2}\pdv[2]{A}{t}=i\Delta \beta_0 A,
+                \label{dynamic equation of A, time domain, alpha not explicit yet: slow oscillating term}
+            \end{equation}
+            where $\Delta \beta_0$ can be obtained by take $\omega=\omega_0$ at \autoref{delta beta intergral relation with F(x,y)}:
+                \begin{equation}
+                \begin{split}
+                    &\Delta \beta_0 = \Delta \beta(\omega_0)\\
+                    =& \frac{\omega_0^2 n(\omega_0)}{c^2 \beta(\omega_0)} \frac{\iint_{-\infty}^\infty \Delta n(\omega_0) \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Take $\omega_0$ into \autoref{delta beta intergral relation with F(x,y)})}\\
+                    =&\frac{\omega_0}{c} \frac{\iint_{-\infty}^\infty \Delta n(\omega_0) \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Used \autoref{beta omega relation approx to n omega / c}: $\beta(\omega_0)\approx n(\omega_0)\omega_0/c$)}\\
+                    =&\frac{\omega_0}{c} \frac{\iint_{-\infty}^\infty [\Bar{n}_2\abs{E}^2+\frac{i\Tilde{\alpha}}{2k_0}] \times \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Used \autoref{Delta n relation with abs E and alpha})}\\
+                    =&\frac{\omega_0}{c} \frac{\iint_{-\infty}^\infty [\Bar{n}_2\abs{F(x,y)A(z,t)}^2+\frac{i\Tilde{\alpha}}{2k_0}] \times \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Used \autoref{tilde E seperate to F, A and exp(ibeta z)})}\\
+                    =&\frac{i\alpha}{2}+\frac{\omega_0\abs{A(z,t)}^2}{c} \frac{\iint_{-\infty}^\infty \Bar{n}_2 \abs{F(x,y)}^4 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Neglected $\alpha_2\abs{E}^2$ in \autoref{tilde alpha and alpha alpha2 relation})}\\
+                    =&\frac{i\alpha}{2}+\frac{\omega_0\Bar{n}_2}{c}\abs{A}^2 \frac{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Neglected $\Bar{n}_2$ difference between core and cladding)}\\
+                    =&\frac{i\alpha}{2}+\gamma(\omega_0)\abs{A}^2,
+                    \label{Delta beta omega 0 expression as F(x,y) intergral}                    
+                \end{split}
+                \end{equation}
+                and
+                \begin{equation}
+                    \gamma(\omega_0) = \frac{\omega_0\Bar{n}_2}{c} \frac{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}}.
+                    \label{gamma omega0 relation in intergral of F(x,y) form}
+                \end{equation}
+                Finally \autoref{dynamic equation of A, time domain, alpha not explicit yet: slow oscillating term} becomes:
+                \begin{equation}
+                    \pdv{A}{z}+\beta_1\pdv{A}{t}+\frac{i\beta_2}{2}\pdv[2]{A}{t}+\frac{\alpha}{2}A=i\gamma(\omega_0) \abs{A}^2 A.
+                    \label{dynamic equation of A, time domain, alpha explicit: slow oscillating term}
+                \end{equation}
+            }
             
-            
+            \SubItem{\textbf{Step 5: Re-organize units}\\
+            The $A(z,t)$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} has the unit of $V/m$ (Refer to \autoref{tilde E seperate to F, A and exp(ibeta z)}). For practical reason, it is common to normalize A such that $\abs{A}^2$ represents optical power. Re normalization as:
+            \begin{equation}
+                \abs{A^\prime}^2=\frac{1}{2}\epsilon_0 n c \mathcal{A}_m\abs{A}^2,
+                \label{renormalization of A to A prime}
+            \end{equation}
+            where
+            \begin{equation}
+                \mathcal{A}_m = \iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}
+                \label{Am definition of intergral}
+            \end{equation}
+            has the units of $m^4$.\\
+            Then it is easy to notice that $\abs{A^\prime}^2$ in \autoref{renormalization of A to A prime} satisfies the same equation as \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term}, with the substitution:
+            \begin{equation}
+                \gamma^\prime(\omega_0)= \frac{\gamma(\omega_0)}{\frac{1}{2}\epsilon_0 n c \mathcal{A}_m}.
+                \label{gamma prime defination of gamma and Am}
+            \end{equation}
+            Thus redefine \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} as the following:
+                \begin{equation}
+                    \pdv{A^\prime}{z}+\beta_1\pdv{A^\prime}{t}+\frac{i\beta_2}{2}\pdv[2]{A^\prime}{t}+\frac{\alpha}{2}A^\prime=i\gamma^\prime(\omega_0) \abs{A^\prime}^2 A^\prime
+                    \label{pulse propagation function without Ramann}
+                \end{equation}
+                , where
+                \begin{equation}
+                \begin{split}
+                    \gamma^\prime(\omega_0)&= \frac{\gamma(\omega_0)}{\frac{1}{2}\epsilon_0 n c \iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Combine \autoref{Am definition of intergral} and \autoref{gamma prime defination of gamma and Am})}\\
+                    &=\frac{\omega_0\Bar{n}_2}{c} \frac{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \frac{1}{\frac{1}{2}\epsilon_0 n c \iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Used \autoref{gamma omega0 relation in intergral of F(x,y) form})}\\
+                    &=\frac{\omega_0}{c}\frac{2\Bar{n}_2}{\epsilon_0 n c} \frac{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}{(\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy})^2}\\
+                    &=\frac{\omega_0}{c}n_2\frac{1}{A_{eff}}.
+                    \label{gamma prime relation with F(x,y) as intergral form}
+                \end{split}
+                \end{equation}
+                And
+                \begin{subequations}
+                \begin{align}
+                    n_2 &= \frac{2\Bar{n}_2}{\epsilon_0 n c},\label{n2 definition, nonlinear Kerr parameter with units of m2/W}\\
+                    A_{eff} &= \frac{(\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy})^2}{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}.\label{effective mode area Aeff definition}
+                \end{align}
+                \end{subequations}
+                Usually $^\prime$ is omitted in the following text refer to quantities with prime.  $\gamma$ and $A$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} will not be used later.\\
+                It is useful to take special notice on the units of $n_2$ and $A_{eff}$. $n_2$ has the unit of $m^2/W$, inverse of optical intensity's unit, which has been discussed as $n_2^I$ at \autoref{n2 and n2I relation}. Typical value of $n_2$ is $\approx 2.6\times10^{-20} m^2/W$.\\
+                Unlike \autoref{Am definition of intergral} has a strange unit, \autoref{effective mode area Aeff definition} has a reasonable unit of area, it is so called \MakeUppercase{effective mode area}. To estimate effective mode area, we can use
+                \begin{equation}
+                    A_{eff} = \pi w^2
+                \end{equation}
+                , where $w$ can be obtained from V factor(\autoref{V parameter}) or mode approximation(\autoref{fig2.1}).
+            }
+            \item Highly nonlinear fibers: Typically, $A_{eff}$ varies around $1-100\mu m^2$, depending on fiber design. In order to have a high non-linear effect(high $\gamma\prime$ in \autoref{gamma prime relation with F(x,y) as intergral form}), specially designed small $A_{eff}$ is required. $\gamma\prime$ values in range $1-100W^{-1}/km$.
+            \item Finally, it must be highlighted that \autoref{pulse propagation function without Ramann} can only be used for pulses not too short(>1ps). Otherwise some approximations used in the derivation are questionable.
         \end{itemize}
-            
-            
+        
+    \subsubsection{Higher-Order Nonlinear Effects}
+        \autoref{pulse propagation function without Ramann} doesn't include effects of stimulated inelastic scattering such as SRS and SBS. If peak power of the incident pulse is above a threshold level, SRS and SBS can transfer energy to a new pulse at a different wavelength, which may propagate in the same or the opposite direction.\\
+        In the case of a delayed Raman response governed by $R(t)$, R(t) is the possibility that $P_{NL}$ gives response at time t. Thus R(t) should satisfy following properties:
+        \begin{subequations}
+        \begin{align}
+            &\int_{-\infty}^\infty R(t)dt=1,\\
+            &T_R = <T> = \int_{-\infty}^\infty tR(t)dt,
+        \end{align}
+        \end{subequations}
+        $T_R$ is called \MakeUppercase{the first moment of the Raman response function}. Raman response is an \MakeUppercase{intensity based response}, thus Nonlinear response function will have the following form:
+        \begin{equation}
+            \chi^{(3)}(t-t_1,t-t_2,t-t_3)=\chi^{(3)}R(t-t_1)\delta(t_1-t_2)\delta(t-t_3),
+        \end{equation}
+        which can be interpreted as $P_{NL}$ is taking time $t-t_1$(same as $t-t_2$, due to $\delta(t_1-t_2)$ term) to response to field $E_1$(same $E_2$, thus $\abs{E_1}^2$, same $\abs{E_2}^2$), but instantaneously response to $E_3$.(due to $\delta(t-t_3)$ term)\\
+        Nonlinear response function can also be written in a symmetrized form:
+        \begin{equation}
+            \chi^{(3)}(t_1,t_2,t_3)=\chi^{(3)}[R(t_1)\delta(t_2)\delta(t_3-t_1)+\delta(t_1-t_2)R(t_2)\delta(t_3)+\delta(t_1)\delta(t_2-t_3)R(t_3)],
+        \end{equation}
+        which can be interpreted as first term has delayed response to $E_1$ and $E_3$, but instantaneously response to $E_2$, other terms argues similarly.
+        
+    \subsubsection{Raman Response Function}
+    
+    \subsection{Numerical Methods}
             
 \newpage
 \section{Group-Velocity Dispersion}
 
-
+\subsection{Different Propagation Regimes}
 
 
 
