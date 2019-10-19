@@ -701,7 +701,8 @@
         \subsubsection{Nonlinear Pulse Propagation}
         \begin{itemize}
             \item $\chi$'s Time dependence and Dispersion, as well as their relation:\\
-                Usually $\boldsymbol{P}$ is written as
+            
+                Usually(BUT NOT properly) $\boldsymbol{P}$ in time domain is written as
                 \begin{subequations}
                     \begin{align}
                         &\boldsymbol{P}_L(\boldsymbol{r}) = \epsilon_0 \chi^{(1)}\cdot\boldsymbol{E}\\
@@ -709,7 +710,7 @@
                     \end{align}
                     \label{P instantly response to E}
                 \end{subequations}
-                \autoref{P instantly response to E} is to say that $\boldsymbol{P}$ and $\boldsymbol{E}$ are in simultaneously response:
+                Now we explain why this is NOT proper. \autoref{P instantly response to E} is to say that $\boldsymbol{P}$ and $\boldsymbol{E}$ are in simultaneously response:
                 \begin{subequations}
                     \begin{align}
                         \chi^{(1)}(t)&=\chi^{(1)}(0)\delta(t),\\
@@ -717,7 +718,7 @@
                     \end{align}
                     \label{no dispersion chi: time domain}
                 \end{subequations}
-                Also this implies that $\chi$ (1) and (3) don't have dispersion:
+                Also Fourier transform of \autoref{no dispersion chi: time domain} implies that $\chi^{(1)}$ and $\chi^{(3)}$ don't have dispersion:
                 \begin{subequations}
                     \begin{align}
                         \Tilde{\chi}^{(1)}(\omega)&=\Tilde{\chi}^{(1)}(0),\\
@@ -725,7 +726,7 @@
                     \end{align}
                     \label{no dispersion chi: freq domain}
                 \end{subequations}
-                And thus \autoref{P instantly response to E} can be written as:
+                Actually \autoref{P instantly response to E} should be written as:
                 \begin{subequations}
                     \begin{align}
                         &\boldsymbol{P}_L(\boldsymbol{r},t)=\epsilon_0\int_{-\infty}^t \chi^{(1)}(t-t^{'})\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})dt^{'}\label{P not instantly response to E, with dispersion: linear part}\\
@@ -736,22 +737,72 @@
                 \autoref{P not instantly response to E, with dispersion} is the general expression when \autoref{no dispersion chi: time domain} and \autoref{no dispersion chi: freq domain} don't satisfies. Also to notice that $\chi$ \MakeUppercase{with dispersion means in time domain} $\chi$ \MakeUppercase{has delay in t}. \\The \autoref{P not instantly response to E, with dispersion} is actually a form of convolution. Using the fourier transform properties in convoultion, we can get a form of \autoref{P not instantly response to E, with dispersion} which is more important:
                 \begin{subequations}
                 \begin{align}
-                    &\Tilde{\boldsymbol{P}}_L(\boldsymbol{r},\omega)=\epsilon_0 \chi^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\label{PL not instantly response to E: freq domain}\\
-                    &\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega_1+\omega_2+\omega_3)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)\label{PNL not instantly response to EEE: freq domain}
+                    &\Tilde{\boldsymbol{P}}_L(\boldsymbol{r},\omega)=\epsilon_0 \Tilde{\chi}^{(1)}(\omega)\cdot \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega)\label{PL not instantly response to E: freq domain}\\
+                    &\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega_1+\omega_2+\omega_3)=\epsilon_0 \Tilde{\chi}^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_1)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_2)\boldsymbol{\Tilde{E}}(\boldsymbol{r},\omega_3)\label{PNL not instantly response to EEE: freq domain}
                 \end{align}
                 \end{subequations}
-                It is useful to deeply understand the action of $\chi^{(1)}$ and $\chi^{(3)}$ now. As \autoref{fig: chi1 and chi3 freq domain illustration} shows, although $\chi^{(1)}$ is frequency dependent, it can never produce P response frequency other than input Electric field frequency. In the circumstance here only $\chi^{(3)}$ can produce response other than Electric field frequency. Also interesting to notice that photonic energy conservation:
+                It is useful to deeply understand the action of $\chi^{(1)}$ and $\chi^{(3)}$ now. As \autoref{fig: chi1 and chi3 freq domain illustration} shows, although $\chi^{(1)}$ is frequency dependent, it can never produce response frequency of P other than input Electric field frequency. In the circumstance here only $\chi^{(3)}$ can produce response other than Electric field frequency. Also interesting to notice that Left Hand Side of \autoref{PNL not instantly response to EEE: freq domain} is written as $\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega_1+\omega_2+\omega_3)$ instead of $\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega)$ (otherwise what should this $\omega$ be? There are no $\omega$ in Right Hand Side.), photonic energy conservation:
                 \begin{equation}
                     \hbar \omega = \hbar \omega_1 +\hbar \omega_2+\hbar \omega_3
                     \label{photonic energy conservation: four wave expression}
                 \end{equation}
-                is automatically satisfied in the Fourier transformation from \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL not instantly response to EEE: freq domain}. Practically in future these frequency can either be positive frequency or negative frequency. If two of $\omega_1$, $\omega_2$ and $\omega_3$ are opposite to each other(e.g:$\omega_1+\omega_2=0$), then this is a good model to Raman process. (which is proportional to light intensity)
+                is automatically satisfied in the Fourier transformation from \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL not instantly response to EEE: freq domain}. Here is the mathematical detail:
+                \begin{itemize}
+                    \item From \autoref{P not instantly response to E, with dispersion: linear part} to \autoref{PL not instantly response to E: freq domain}, the process is times LHS and RHS of \autoref{P not instantly response to E, with dispersion: linear part} with $\exp{i\omega t}$ and then integrate by t.
+                    \begin{subequations}
+                    \begin{align}
+                        \boldsymbol{P}_L(\boldsymbol{r},t)\exp{i\omega t}&=\epsilon_0\int_{-\infty}^\infty dt^{'}\chi^{(1)}(t-t^{'})\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})\exp{i\omega t}\\
+                        \int_{-\infty}^\infty dt\boldsymbol{P}_L(\boldsymbol{r},t)\exp{i\omega t}&=\epsilon_0\int_{-\infty}^\infty dt\int_{-\infty}^\infty dt^{'}\chi^{(1)}(t-t^{'})\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})\exp{i\omega t}\\
+                        \Tilde{\boldsymbol{P}}(\omega)=\epsilon_0\int_{-\infty}^\infty dt\int_{-\infty}^\infty dt^{'}&\chi^{(1)}(t-t^{'})\exp{i\omega (t-t^{'})}\cdot\boldsymbol{E}(\boldsymbol{r},t^{'})\exp{i\omega t^{'}}.
+                    \end{align}
+                    \label{derivation of PL fourier transform: convolution theorem}
+                    \end{subequations}
+                    Then we get \autoref{PL not instantly response to E: freq domain}. Here we clarify that
+                    \begin{subequations}
+                    \begin{align}
+                        &\Tilde{\chi}^{(1)}(\omega) = \int_{-\infty}^\infty  \chi^{(1)}(t)\exp{i\omega t} dt\\
+                        &\chi^{(1)}(t) = \frac{1}{2\pi}\int_{-\infty}^\infty  \Tilde{\chi}^{(1)}(\omega)\exp{-i\omega t} d\omega.
+                    \end{align}
+                        \label{chi1 fourier transformation}
+                    \end{subequations}
+                    \item From \autoref{P not instantly response to E, with dispersion: nonlinear part} to \autoref{PNL not instantly response to EEE: freq domain}, Almost the same process as \autoref{derivation of PL fourier transform: convolution theorem}. First times $\exp{i(\omega_1+\omega_2+\omega_3)t}$ to both LHS and RHS and then integrate with respect to t.
+                    \begin{subequations}
+                    \allowdisplaybreaks
+                    \begin{align}
+                        \begin{split}
+                            &\boldsymbol{P}_{NL}(\boldsymbol{r},t)\exp{i(\omega_1+\omega_2+\omega_3)t}=\\
+                            &\epsilon_0\int_{-\infty}^\infty dt_1\int_{-\infty}^\infty dt_2\int_{-\infty}^\infty dt_3 \\
+                            &\chi^{(3)}(t-t_1,t-t_2,t-t_3)\vdots \boldsymbol{E}(\boldsymbol{r},t_1)\exp{i\omega_1 t}\boldsymbol{E}(\boldsymbol{r},t_2)\exp{i\omega_2 t}\boldsymbol{E}(\boldsymbol{r},t_3)\exp{i\omega_3 t}
+                        \end{split}\\
+                        \begin{split}
+                            &\int_{-\infty}^\infty dt\boldsymbol{P}_{NL}(\boldsymbol{r},t)\exp{i(\omega_1+\omega_2+\omega_3)t}=\\
+                            &\epsilon_0\int_{-\infty}^\infty dt \int_{-\infty}^\infty dt_1\int_{-\infty}^\infty dt_2\int_{-\infty}^\infty dt_3 \\
+                            &\chi^{(3)}(t-t_1,t-t_2,t-t_3)\vdots \boldsymbol{E}(\boldsymbol{r},t_1)\exp{i\omega_1 t}\boldsymbol{E}(\boldsymbol{r},t_2)\exp{i\omega_2 t}\boldsymbol{E}(\boldsymbol{r},t_3)\exp{i\omega_3 t}
+                        \end{split}\\
+                        \begin{split}
+                            &\Tilde{\boldsymbol{P}}_{NL}(\boldsymbol{r},\omega_1+\omega_2+\omega_3)=    \epsilon_0\int_{-\infty}^\infty dt \int_{-\infty}^\infty dt_1\int_{-\infty}^\infty dt_2\int_{-\infty}^\infty dt_3 \\
+                            &\chi^{(3)}(t-t_1,t-t_2,t-t_3)\exp{i[\omega_1(t-t_1)+\omega_2(t-t_2)+\omega_3(t-t_3)]}\vdots \\
+                            &\boldsymbol{E}(\boldsymbol{r},t_1)\exp{i\omega_1 t_1}\boldsymbol{E}(\boldsymbol{r},t_2)\exp{i\omega_2 t_2}\boldsymbol{E}(\boldsymbol{r},t_3)\exp{i\omega_3 t_3}
+                        \end{split}
+                    \end{align}
+                    \label{derivation of PNL fourier transform: convolution theorem in tensor product}
+                    \end{subequations}
+                    Then we get \autoref{PNL not instantly response to EEE: freq domain}. Here we clarify that
+                    \begin{subequations}
+                    \begin{align}
+                       &\Tilde{\chi}^{(3)}(\omega_1,\omega_2,\omega_3) = \iiint_{-\infty}^\infty \chi^{(3)}(t_1,t_2,t_3)\exp{i[\omega_1 t_1+\omega_2 t_2+\omega_3 t_3]}dt_1 dt_2 dt_3\\
+                       &\chi^{(3)}(t_1,t_2,t_3) = (\frac{1}{2\pi})^3\iiint_{-\infty}^\infty  \Tilde{\chi}^{(3)}(\omega_1,\omega_2,\omega_3)\exp{-i[\omega_1 t_1+\omega_2 t_2+\omega_3 t_3]}d\omega_1 d\omega_2 d\omega_3
+                    \end{align}
+                        \label{chi3 fourier transformation}
+                    \end{subequations}
+                \end{itemize}
+                
+                Practically in future these frequency can either be positive frequency or negative frequency. If two of $\omega_1$, $\omega_2$ and $\omega_3$ are opposite to each other(e.g:$\omega_1+\omega_2=0$), then this is a good model to molecule Raman process. (which is proportional to light intensity, we will discuss at \autoref{section: Higher-Order Nonlinear Effects}.)
                 \begin{subequations}
                 \begin{align}
                     &\boldsymbol{\Tilde{E}}(\omega_1)\boldsymbol{\Tilde{E}}(-\omega_1)=\abs{\boldsymbol{\Tilde{E}}(\omega_1)}^2\\
                     &\Tilde{\boldsymbol{P}}_{NL,Raman}(\omega_3)=\epsilon_0 \chi^{(3)}(\omega_1,\omega_2,\omega_3)\vdots \boldsymbol{\Tilde{E}}(\omega_1)\boldsymbol{\Tilde{E}}(-\omega_1)\boldsymbol{\Tilde{E}}(\omega_3) \propto \abs{\boldsymbol{\Tilde{E}}(\omega_1)}^2
                 \end{align}
-                    
                 \end{subequations}
                 
                 \begin{figure}[htbp]
@@ -769,14 +820,14 @@
                 \end{align}
                 \end{subequations}
                 
-                can be interpreted as having opposite sign of frequency. In classical opinion this can be interpreted as two optical fields cancels each other. In Quantum optics opposite frequency can be interpreted as
+                can be interpreted as having opposite sign of frequency. In classical opinion this can be interpreted as two optical fields interferes and cancels each other. In Quantum optics opposite frequency can be interpreted as
                 \begin{subequations}
                 \begin{align}
                     \hat{a}^\dag &= \hat{E}\exp{-i\omega t}\\
                     \hat{a} &= \hat{E}\exp{i\omega t},
                 \end{align}
                 \end{subequations}
-                which means generation and annihilation of photons.
+                ($\hat{E}$ are operators here) which means generation and annihilation of photons.
                 
                 
             \item Quick evolving term and slow evolving terms separation:\\
@@ -809,6 +860,7 @@
                     =&\frac{1}{8} \epsilon_0 {{\chi^{(3)}}_x}^{xxx}(3\abs{E(\boldsymbol{r},t)}^2 E(\boldsymbol{r},t)\exp{-i\omega_0 t}+3\abs{E(\boldsymbol{r},t)}^2 E^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}\\
                     &+E^3(\boldsymbol{r},t)\exp{-3i\omega_0 t}+E^{*3}(\boldsymbol{r},t)\exp{3i\omega_0 t})\\
                     =&\frac{1}{2}(P_{NL}(\boldsymbol{r},t)\exp{-i\omega_0 t}+P_{NL}^{*}(\boldsymbol{r},t)\exp{i\omega_0 t}).
+                    \label{derivation of epsilion NL = 3/4 chi3 E2}
                 \end{split}
                 \end{equation}
                 Neglecting freq mismatch terms, we get
@@ -844,6 +896,7 @@
                     \SubItem{
                     Fourier transforms:
                     \begin{subequations}
+                    \allowdisplaybreaks
                     \begin{align}
                         &\Tilde{E}(\boldsymbol{r},\omega-\omega_0)=\int_{-\infty}^{\infty}E(\boldsymbol{r},t)\exp{i(\omega-\omega_0)t}dt, \label{fourier transform of slow oscillating term of E}\\
                         &E(\boldsymbol{r},t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Tilde{E}(\boldsymbol{r},\omega-\omega_0)\exp{-i(\omega-\omega_0)t}d\omega, \label{inverse fourier transform of slow oscillating term of E}\\
@@ -909,7 +962,7 @@
                 Then put \autoref{PL not instantly response to E: freq domain} into \autoref{slow oscillatiing term propagation equation derive in section 2.3.1-part 5}, (These two equations are both in freq domain, and \autoref{PL not instantly response to E: freq domain} are actually precise without any assumption of instant response)\\
                 We get Helmholtz equation
                 \begin{equation}
-                    \Lap^2\Tilde{E}+\epsilon(\omega)k^2\Tilde{E}=0,
+                    \boxed{\Lap^2\Tilde{E}+\epsilon(\omega)k^2\Tilde{E}=0},
                     \label{Helmholtz equation in frequency domain}
                 \end{equation}
                 where
@@ -1077,6 +1130,7 @@
             \end{equation}
             where $\Delta \beta_0$ can be obtained by take $\omega=\omega_0$ at \autoref{delta beta intergral relation with F(x,y)}:
                 \begin{equation}
+                \allowdisplaybreaks
                 \begin{split}
                     &\Delta \beta_0 = \Delta \beta(\omega_0)\\
                     =& \frac{\omega_0^2 n(\omega_0)}{c^2 \beta(\omega_0)} \frac{\iint_{-\infty}^\infty \Delta n(\omega_0) \abs{F(x,y)}^2 \mathrm{dxdy}}{\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy}} \mbox{ (Take $\omega_0$ into \autoref{delta beta intergral relation with F(x,y)})}\\
@@ -1140,7 +1194,7 @@
                     A_{eff} &= \frac{(\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy})^2}{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}.\label{effective mode area Aeff definition}
                 \end{align}
                 \end{subequations}
-                Usually $^\prime$ is omitted in the following text refer to quantities with prime.  $\gamma$ and $A$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} will not be used later.\\
+                Usually $^\prime$ is omitted in the following text refer to quantities with prime.  $\gamma$ and $A$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} will not be used any more.\\
                 It is useful to take special notice on the units of $n_2$ and $A_{eff}$. $n_2$ has the unit of $m^2/W$, inverse of optical intensity's unit, which has been discussed as $n_2^I$ at \autoref{n2 and n2I relation}. Typical value of $n_2$ is $\approx 2.6\times10^{-20} m^2/W$.\\
                 Unlike \autoref{Am definition of intergral} has a strange unit, \autoref{effective mode area Aeff definition} has a reasonable unit of area, it is so called \MakeUppercase{effective mode area}. To estimate effective mode area, we can use
                 \begin{equation}
@@ -1152,29 +1206,130 @@
             \item Finally, it must be highlighted that \autoref{pulse propagation function without Ramann} can only be used for pulses not too short(>1ps). Otherwise some approximations used in the derivation are questionable.
         \end{itemize}
         
-    \subsubsection{Higher-Order Nonlinear Effects}
-        \autoref{pulse propagation function without Ramann} doesn't include effects of stimulated inelastic scattering such as SRS and SBS. If peak power of the incident pulse is above a threshold level, SRS and SBS can transfer energy to a new pulse at a different wavelength, which may propagate in the same or the opposite direction.\\
-        In the case of a delayed Raman response governed by $R(t)$, R(t) is the possibility that $P_{NL}$ gives response at time t. Thus R(t) should satisfy following properties:
-        \begin{subequations}
-        \begin{align}
-            &\int_{-\infty}^\infty R(t)dt=1,\\
-            &T_R = <T> = \int_{-\infty}^\infty tR(t)dt,
-        \end{align}
-        \end{subequations}
-        $T_R$ is called \MakeUppercase{the first moment of the Raman response function}. Raman response is an \MakeUppercase{intensity based response}, thus Nonlinear response function will have the following form:
-        \begin{equation}
-            \chi^{(3)}(t-t_1,t-t_2,t-t_3)=\chi^{(3)}R(t-t_1)\delta(t_1-t_2)\delta(t-t_3),
-        \end{equation}
-        which can be interpreted as $P_{NL}$ is taking time $t-t_1$(same as $t-t_2$, due to $\delta(t_1-t_2)$ term) to response to field $E_1$(same $E_2$, thus $\abs{E_1}^2$, same $\abs{E_2}^2$), but instantaneously response to $E_3$.(due to $\delta(t-t_3)$ term)\\
-        Nonlinear response function can also be written in a symmetrized form:
-        \begin{equation}
-            \chi^{(3)}(t_1,t_2,t_3)=\chi^{(3)}[R(t_1)\delta(t_2)\delta(t_3-t_1)+\delta(t_1-t_2)R(t_2)\delta(t_3)+\delta(t_1)\delta(t_2-t_3)R(t_3)],
-        \end{equation}
-        which can be interpreted as first term has delayed response to $E_1$ and $E_3$, but instantaneously response to $E_2$, other terms argues similarly.
-        
-    \subsubsection{Raman Response Function}
+    \subsubsection{Higher-Order (Raman) Nonlinear Effects}\label{section: Higher-Order Nonlinear Effects}
+        \autoref{pulse propagation function without Ramann} doesn't include effects of stimulated inelastic scattering such as SRS and SBS. If peak power of the incident pulse is above a threshold level, SRS and SBS can transfer energy to a new pulse at a different wavelength, which may propagate in the same or the opposite direction.
+        \begin{itemize}
+            \item Nonlinear response function R(t):\\
+                Now discuss the case of a delayed Raman response governed by $R(t)$. $R(t)$ is the possibility that $P_{NL}$ gives response at time t. Thus $R(t)$ should satisfy following properties:
+                \begin{subequations}
+                \begin{align}
+                    &\int_{-\infty}^\infty R(t)dt=1,\\
+                    &T_R = <T> = \int_{-\infty}^\infty tR(t)dt,
+                \end{align}
+                \end{subequations}
+                Note $R(t)$ has the unit of $Hz$. Due to causality, $R(t)$ should also have the properties:
+                \begin{subequations}
+                \begin{align}
+                    &R(t<0)=0\label{Causality requirement of R(t) Raman response function}\\
+                    &\int_{0}^\infty R(t)dt=1,\\
+                    &T_R = <T> = \int_{-\infty}^\infty tR(t)dt = \int_{0}^\infty tR(t)dt\label{expectation value expression by R(t)},
+                \end{align}
+                \label{properties of R(t): normalization, causality and expectation}
+                \end{subequations}
+                [Sometimes \autoref{Causality requirement of R(t) Raman response function} are questionable in real model.] $T_R$ is called \MakeUppercase{the first moment of the Raman response function}.
+            \item $\chi^{(3)}$ relation to R(t):\\
+                Raman response is an \MakeUppercase{intensity based response}, thus Nonlinear response function will have the following form:
+                \begin{equation}
+                    \chi^{(3)}(t-t_1,t-t_2,t-t_3)=\chi^{(3)}R(t-t_1)\delta(t_1-t_2)\delta(t-t_3),
+                    \label{unsymmetrized R(t) Raman response function}
+                \end{equation}
+                which can be interpreted as $P_{NL}$ takes time $t-t_1$(same as $t-t_2$, due to $\delta(t_1-t_2)$ term) to response to field $E_1$(same $E_2$, thus $\abs{E_1}^2$, same $\abs{E_2}^2$), but instantaneously response to $E_3$.(due to $\delta(t-t_3)$ term)\\
+                Nonlinear response function can also be written in a symmetrized form:
+                \begin{equation}
+                    \chi^{(3)}(t_1,t_2,t_3)=\chi^{(3)}[R(t_1)\delta(t_2)\delta(t_3-t_1)+\delta(t_1-t_2)R(t_2)\delta(t_3)+\delta(t_1)\delta(t_2-t_3)R(t_3)],
+                    \label{symmetrized R(t) Raman response function}
+                \end{equation}
+                which can be interpreted as first term has delayed response to $E_1$ and $E_3$, but instantaneously response to $E_2$, other terms argues similarly.
+            \item Nonlinear polarization:\\
+                Take \autoref{symmetrized R(t) Raman response function} into \autoref{P not instantly response to E, with dispersion: nonlinear part}, and use similiar technique in \autoref{derivation of epsilion NL = 3/4 chi3 E2}, we can get
+                \begin{equation}
+                    P_{NL}(\boldsymbol{r},t)=\frac{3\epsilon_0}{4}\chiThree E(\boldsymbol{r},t)\int_{-\infty}^t R(t-\tau)\abs{E(\boldsymbol{r,\tau})}^2 d\tau.
+                \end{equation}
+            \item Order seperation in solving \autoref{Helmholtz equation in frequency domain}:\\
+                Now the pertubation term of \autoref{Delta n relation with abs E and alpha} should be written as
+                \begin{equation}
+                    \Delta n(\omega) = n_2(\omega)\int_0^\infty R(t^\prime)\abs{E(\boldsymbol{r},t-t^\prime)}^2dt^\prime+\frac{i\alpha(\omega)}{2k_0}.
+                    \label{Delta n relation with abs E and alpha: with Raman term, in intergral of R(t)}
+                \end{equation}
+                Notice \autoref{Delta n relation with abs E and alpha} and \autoref{Delta n relation with abs E and alpha: with Raman term, in intergral of R(t)} are different, thus $\Delta \beta_m$ in \autoref{Delta beta omega expands around omega 0} will have different values.
+            \item Rewrite Pulse Propagation Function (\autoref{pulse propagation function without Ramann}):\\
+                Then try to re-write \autoref{pulse propagation function without Ramann}. Here due to time dependence of nonlinear term($\gamma (\omega_0) \abs{A}^2A$), this term will no-longer be frequency independent. $\gamma(\omega)$ needs to be expanded around $\omega_0$:
+                \begin{equation}
+                    \gamma(\omega)=\gamma(\omega_0)+\dv{\gamma}{\omega}|_{\omega=\omega_0}(\omega-\omega_0)
+                \end{equation}
+                And \autoref{pulse propagation function without Ramann} can be re-written as:
+                \begin{equation}
+                \begin{split}
+                    &\pdv{A}{z}+\frac{\alpha(\omega_0)}{2}A-i\sum_{n=1}^\infty \frac{i^n \beta_n}{n!}\pdv[n]{A}{t}\\
+                    &=i(\gamma(\omega_0)+i\gamma_1\pdv{}{t})(A(z,t)\int_0^\infty R(t^\prime)\abs{A(z,t-t^\prime)}^2dt^\prime ).
+                \end{split}
+                    \label{pulse propagation function with Ramann: not in rotation frame of group velocity}
+                \end{equation}
+                In \autoref{pulse propagation function with Ramann: not in rotation frame of group velocity}, $\alpha(\omega)$ dependence are neglected. Otherwise write $\alpha(\omega)=\alpha(\omega_0)+\dv{\alpha}{\omega}_{\omega=\omega_0}(\omega-\omega_0)$, $\alpha_1=\dv{\alpha}{\omega}_{\omega=\omega_0}$, \autoref{pulse propagation function with Ramann: not in rotation frame of group velocity} becomes
+                \begin{equation}
+                \begin{split}
+                    &\pdv{A}{z}+\frac{1}{2}(\alpha(\omega_0)+i\alpha_1\pdv{}{t})A-i\sum_{n=1}^\infty \frac{i^n \beta_n}{n!}\pdv[n]{A}{t}\\
+                    &=i(\gamma(\omega_0)+i\gamma_1\pdv{}{t})(A(z,t)\int_0^\infty R(t^\prime)\abs{A(z,t-t^\prime)}^2dt^\prime ).
+                \end{split}
+                    \label{pulse propagation function with Ramann as well as alpha dispersion: not in rotation frame of group velocity}
+                \end{equation}
+            \item $\gamma_1$ and $\gamma$ ratio:\\
+                Using the last equality in \autoref{gamma prime relation with F(x,y) as intergral form}, we can write the ratio $\gamma_1/\gamma$ ($\gamma_1=\dv{\gamma}{\omega}_{\omega=\omega_0}$):
+                \begin{subequations}
+                \begin{align}
+                    \frac{\gamma_1(\omega_0)}{\gamma(\omega_0)}            &=\frac{1}{\omega_0}+\frac{1}{n_2}\dv{n_2}{\omega}_{\omega=\omega_0}-\frac{1}{A_{eff}}\dv{A_{eff}}{\omega}_{\omega=\omega_0}\\
+                    \frac{\gamma_1(\omega_0)}{\gamma(\omega_0)} &\approx\frac{1}{\omega_0}\label{gamma1 and gamma ratio approx to omega0}
+                \end{align}
+                        \label{gamma1 and gamma ratio}
+                \end{subequations}
+                If the broadening is limited to 20THz, the approximation of $\frac{\gamma_1(\omega_0)}{\gamma(\omega_0)}=\frac{1}{\omega_0}$ works fairlyy well. When broadening larger than 100THz, the second and third term of \autoref{gamma1 and gamma ratio} can not be neglected.
+            \item self-steepening:\\
+                If we combine the terms containing the derivative $\pdv{A}{t}$ in \autoref{gamma1 and gamma ratio}, we find that the $\gamma_1$ term forces the group velocity to depend on the optical intensity and leads to the phenomenon of self-steepening.
+            \item Slow Varying approximation of Pulse propagation function (\autoref{pulse propagation function with Ramann: not in rotation frame of group velocity}):\\
+                For pulses wide enough to contain many optical cycles(pulse width >100fs), approximation in \autoref{gamma1 and gamma ratio approx to omega0} and following \autoref{Slow Varying approximation of A square in Pulse propagation function} can be used.
+                \begin{subequations}
+                \begin{align}
+                    \abs{A(z,t-t^\prime)}^2 &\approx \abs{A(z,t)}^2-t^\prime \pdv{}{t}\abs{A(z,t)}^2\label{Slow Varying approximation of A square in Pulse propagation function: expansion}\\
+                    \pdv[2]{}{t}\abs{A(z,t)}^2 & \approx 0\label{Slow Varying approximation of A square in Pulse propagation function: second order neglected}
+                \end{align}
+                \label{Slow Varying approximation of A square in Pulse propagation function}
+                \end{subequations}
+                Note although \autoref{Slow Varying approximation of A square in Pulse propagation function: second order neglected} holds, following
+                \begin{equation*}
+                    \pdv[2]{}{t}A(z,t) \approx 0 (WRONG!)
+                \end{equation*}
+                NOT holds!
+                Take \autoref{Slow Varying approximation of A square in Pulse propagation function} into \autoref{pulse propagation function with Ramann: not in rotation frame of group velocity}, we get
+                \begin{equation}
+                \allowdisplaybreaks
+                \begin{split}
+                    &\pdv{A}{z}+\frac{\alpha(\omega_0)}{2}A-i\sum_{n=1}^\infty \frac{i^n \beta_n}{n!}\pdv[n]{A}{t}\\
+                    &=i(\gamma(\omega_0)+i\gamma_1\pdv{}{t})(A(z,t)\int_0^\infty R(t^\prime)[\abs{A(z,t)}^2-t^\prime \pdv{}{t}\abs{A(z,t)}^2]dt^\prime )\\
+                    &=i(\gamma(\omega_0)+i\gamma_1\pdv{}{t})(A(z,t)\abs{A(z,t)}^2\int_0^\infty R(t^\prime)dt^\prime-A(z,t)\pdv{}{t}\abs{A(z,t)}^2\int_0^\infty t^\prime R(t^\prime)dt^\prime )\\
+                    &=i(\gamma(\omega_0)+i\gamma_1\pdv{}{t})(A(z,t)\abs{A(z,t)}^2-T_R A(z,t)\pdv{}{t}\abs{A(z,t)}^2 ) \mbox{ (Used: \autoref{properties of R(t): normalization, causality and expectation})}\\
+                    &=i\gamma(\omega_0)(A(z,t)\abs{A(z,t)}^2-T_R A(z,t)\pdv{}{t}\abs{A(z,t)}^2)+i\gamma_1\pdv{}{t}A(z,t)\abs{A(z,t)}^2\mbox{ (Used: \autoref{Slow Varying approximation of A square in Pulse propagation function: second order neglected})}\\
+                    &=i\gamma(A(z,t)\abs{A(z,t)}^2+\frac{i}{\omega_0}\pdv{}{t}A(z,t)\abs{A(z,t)}^2-T_R A(z,t)\pdv{}{t}\abs{A(z,t)}^2) \mbox{ (Used: \autoref{gamma1 and gamma ratio approx to omega0})}
+                \end{split}
+                \label{pulse propagation function with Ramann: not in rotation frame of group velocity, derivation using TR}
+                \end{equation}
+            \item Retarded frame transformation:\\
+                Making Transformation:
+                \begin{equation}
+                    T = t-\frac{z}{v_g}=t-\beta_1 z
+                    \label{retarded rotation frame transformation: T and t relation by vg}.
+                \end{equation}
+                Term $\beta_1\pdv{A}{t}$ in LFS of \autoref{pulse propagation function with Ramann: not in rotation frame of group velocity, derivation using TR} can be cancelled by transform t to T by \autoref{retarded rotation frame transformation: T and t relation by vg}. Keep up to third order only:
+                \begin{equation}
+                    \boxed{\pdv{A}{z}+\frac{\alpha}{2}A+\frac{i\beta_2}{2}\pdv[2]{A}{T}-\frac{\beta_3}{6}\pdv[3]{A}{T} = i\gamma(A\abs{A}^2+\frac{i}{\omega_0}\pdv{}{T}A\abs{A}^2-T_R A\pdv{}{T}\abs{A}^2)}
+                    \label{pulse propagation function with Ramann: in rotation frame of group velocity}
+                \end{equation}
+                \autoref{pulse propagation function with Ramann: in rotation frame of group velocity} will be super important in the following chapters. This is the \MakeUppercase{pulse propagation function with Raman term}.
+        \end{itemize}
+
+    \subsubsection{Raman Response Function and its impact}
     
     \subsection{Numerical Methods}
+            
             
 \newpage
 \section{Group-Velocity Dispersion}
