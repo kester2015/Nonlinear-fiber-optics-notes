@@ -71,7 +71,7 @@
 \setlength{\columnseprule}{1 pt}
 
 
-\title{Nonlinear Fiber Optics\cite{agrawal_nonlinear_2007} Summary}
+\title{Nonlinear Fiber Optics\cite{agrawal_nonlinear_2007} Summary\\ Chapter 1 and 2}
 \author{Maodong Gao}
 \date{\today}
 
@@ -1111,6 +1111,7 @@
             Recall that from \autoref{fast oscillation separation: E} and \autoref{tilde E seperate to F, A and exp(ibeta z)}, electric field can be written as:
             \begin{equation}
                 \boldsymbol{E}(\boldsymbol{r},t)=\frac{1}{2}\boldsymbol{\hat{x}}[F(x,y)A(z,t)\exp{i(\beta_0 z-\omega_0 t)}+c.c].
+                \label{E = F*A expression}
             \end{equation}
             
             \SubItem{\textbf{Step 4: Get Pulse Propagation Equation}\\
@@ -1194,7 +1195,7 @@
                     A_{eff} &= \frac{(\iint_{-\infty}^\infty \abs{F(x,y)}^2 \mathrm{dxdy})^2}{\iint_{-\infty}^\infty  \abs{F(x,y)}^4 \mathrm{dxdy}}.\label{effective mode area Aeff definition}
                 \end{align}
                 \end{subequations}
-                Usually $^\prime$ is omitted in the following text refer to quantities with prime.  $\gamma$ and $A$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} will not be used any more.\\
+                \textbf{Usually $^\prime$ is omitted in the following text refer to quantities with prime.}  $\gamma$ and $A$ in \autoref{dynamic equation of A, time domain, alpha explicit: slow oscillating term} will not be used any more.\\
                 It is useful to take special notice on the units of $n_2$ and $A_{eff}$. $n_2$ has the unit of $m^2/W$, inverse of optical intensity's unit, which has been discussed as $n_2^I$ at \autoref{n2 and n2I relation}. Typical value of $n_2$ is $\approx 2.6\times10^{-20} m^2/W$.\\
                 Unlike \autoref{Am definition of intergral} has a strange unit, \autoref{effective mode area Aeff definition} has a reasonable unit of area, it is so called \MakeUppercase{effective mode area}. To estimate effective mode area, we can use
                 \begin{equation}
@@ -1327,14 +1328,37 @@
         \end{itemize}
 
     \subsubsection{Raman Response Function and its impact}
+        \begin{itemize}
+            \item 
+        \end{itemize}
     
+    
+    
+    
+    
+    
+    
+    \subsection{Lugiato-Lefever Equation}
+    \subsubsection{Lugiato-Lefever Equation from Maxwell equation}
+        \begin{itemize}
+            \item Lugiato-Lefever equation is Nonlinear pulse propagation function with round trip boundary condition. The spatial variable along propagation direction z is replaced to $\phi$, which is  azimuthal angle of the optical resonator.
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/optical_resonator.jpg}
+                \caption{Schematic illustration of a continuously-driven micro-resonator. (a) Coordinates of lab frame. (b) Coordinates of rotational frame.\cite{yang_nonlinear_2019}}
+                \label{optical resonator fig}
+            \end{figure}
+            \item The alphabet "A" we used represented for electric field (refer to \autoref{E = F*A expression}). However in the context of LLE application, A is often normalized to "photon number", labelled as "$a$" (in some literature\cite{yang_nonlinear_2019} also use "A", please take notice to the unit along with the context). The expression is
+            \begin{equation}
+                a(\phi,t) = \frac{E(\phi,t)}{\sqrt{\hbar \omega_0}}\exp{i(\omega_p-\omega_0)}
+            \end{equation}
+            
+        \end{itemize}
+        
+        \subsubsection{Lagrangian density of Lugiato-Lefever Equation}
+        
+        \subsubsection{Lugiato-Lefever Equation as non-linear Schrödinger equation}
     \subsection{Numerical Methods}
-            
-            
-\newpage
-\section{Group-Velocity Dispersion}
-
-\subsection{Different Propagation Regimes}
 
 
 
